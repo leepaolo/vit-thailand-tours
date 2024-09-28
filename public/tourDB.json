@@ -15,7 +15,10 @@
     "tourLanguage": [
       "English",
       "Italian"
-    ]
+    ],
+    "tourStartAt": "4:00 PM",
+    "tourFinishAt": "8:00 PM",
+    "tourActive": true
   },
   {
     "id": 2,
@@ -31,6 +34,9 @@
     ],
     "tourLanguage": [
       "English"
-    ]
+    ],
+    "tourStartAt": "4:00 PM",
+    "tourFinishAt": "8:00 PM",
+    "tourActive": true
   }
 ]

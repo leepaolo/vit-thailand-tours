@@ -1,10 +1,14 @@
 <div *ngIf="tours$ | async as tours; else noTours">
   <div *ngFor="let tour of tours" class="tour-item">
-    <h3>{{ tour.tourTitle }}</h3>
-    <p>{{ tour.tourMainDescription }}</p>
-    <p><strong>Location:</strong> {{ tour.tourLocation }}</p>
-    <p><strong>Price for adults:</strong> ${{ tour.tourPriceAdult }}</p>
-    <hr />
+    <div class="p-2">
+      <h3 class="text-xl font-bold">
+        <a
+          [routerLink]="['/', createSlug(tour.tourTitle)]"
+          routerLinkActive="router-link-active"
+          >{{ tour.tourTitle }}</a
+        >
+      </h3>
+    </div>
   </div>
 </div>
 
