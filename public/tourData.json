@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "tourTitle": "Historical City Tour",
+    "tourMainDescription": "Explore the city's rich history on this comprehensive tour.",
+    "tourStepOne": "Meet at the central square.",
+    "tourStepTwo": "Visit the ancient museum.",
+    "tourPriceAdult": 50,
+    "tourPriceChild": 25,
+    "tourLocation": "Rome",
+    "tourType": [
+      "Halfday",
+      "Fullday"
+    ],
+    "tourLanguage": [
+      "English",
+      "Italian"
+    ]
+  },
+  {
+    "id": 2,
+    "tourTitle": "Sunset Beach Adventure",
+    "tourMainDescription": "Relax on the beach and enjoy a beautiful sunset.",
+    "tourStepOne": "Gather at the harbor.",
+    "tourStepTwo": "Board the boat for a beach journey.",
+    "tourPriceAdult": 80,
+    "tourPriceChild": 40,
+    "tourLocation": "Naples",
+    "tourType": [
+      "Fullday"
+    ],
+    "tourLanguage": [
+      "English"
+    ]
+  }
+]
