@@ -1,1 +1,15 @@
-<p>navbar-top works!</p>
+<nav class="bg-white shadow dark:bg-gray-800">
+  <div
+    class="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300"
+  >
+    <!-- Loop over navigation links -->
+    <section>
+      <a
+        *ngFor="let link of navLinks"
+        [routerLink]="link.route"
+        class="text-gray-800 transition-colors duration-300 transform dark:text-gray-200 mx-1.5 sm:mx-6"
+        >{{ link.label | uppercase }}</a
+      >
+    </section>
+  </div>
+</nav>

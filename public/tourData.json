@@ -7,7 +7,7 @@
     "tourStepTwo": "Visit the ancient museum.",
     "tourPriceAdult": 50,
     "tourPriceChild": 25,
-    "tourLocation": "Rome",
+    "tourLocation": "Bangkok",
     "tourType": [
       "Halfday",
       "Fullday"
@@ -25,7 +25,7 @@
     "tourStepTwo": "Board the boat for a beach journey.",
     "tourPriceAdult": 80,
     "tourPriceChild": 40,
-    "tourLocation": "Naples",
+    "tourLocation": "Bangkok",
     "tourType": [
       "Fullday"
     ],
