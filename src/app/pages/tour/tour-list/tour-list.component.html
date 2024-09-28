@@ -1,0 +1,13 @@
+<div *ngIf="tours$ | async as tours; else noTours">
+  <div *ngFor="let tour of tours" class="tour-item">
+    <h3>{{ tour.tourTitle }}</h3>
+    <p>{{ tour.tourMainDescription }}</p>
+    <p><strong>Location:</strong> {{ tour.tourLocation }}</p>
+    <p><strong>Price for adults:</strong> ${{ tour.tourPriceAdult }}</p>
+    <hr />
+  </div>
+</div>
+
+<ng-template #noTours>
+  <p>No tours available at the moment.</p>
+</ng-template>

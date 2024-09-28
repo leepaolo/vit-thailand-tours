@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
-import { TourLayoutComponent } from './pages/tour-layout/tour-layout.component';
-import { TourListComponent } from './pages/tour-list/tour-list.component';
-import { ContactComponent } from './shared/components/contact/contact.component';
+import { TourListComponent } from './pages/tour/tour-list/tour-list.component';
+import { ContactComponent } from './pages/contact/contact.component';
 import { HomePageComponent } from './shared/components/home-page/home-page.component';
 
 export const routes: Routes = [

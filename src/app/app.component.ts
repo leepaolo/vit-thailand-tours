@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TourLayoutComponent } from './pages/tour-layout/tour-layout.component';
+import { PageLayoutComponent } from './pages/page-layout/page-layout.component';
 import { NavbarTopComponent } from './shared/components/navbar-top/navbar-top.component';
 
 @Component({
@@ -9,7 +9,7 @@ import { NavbarTopComponent } from './shared/components/navbar-top/navbar-top.co
   standalone: true,
   imports: [
     CommonModule,
-    TourLayoutComponent,
+    PageLayoutComponent,
     NavbarTopComponent,
     RouterOutlet,
   ],
