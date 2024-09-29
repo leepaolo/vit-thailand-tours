@@ -1,5 +1,5 @@
 interface ITourInfo {
-  id: number;
+  id: string;
   tourTitle: string;
   tourMainDescription: string;
   tourStepOne: string;
@@ -7,8 +7,8 @@ interface ITourInfo {
 }
 
 interface ITourPricing {
-  tourPriceAdult: number;
-  tourPriceChild?: number; // Optional, if needed in future
+  tourPriceAdult: number | null;
+  tourPriceChild: number | null;
 }
 
 interface ITourMeta {

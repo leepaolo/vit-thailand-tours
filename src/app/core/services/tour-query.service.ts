@@ -26,4 +26,8 @@ export class TourQueryService {
   isLoaded(): Observable<boolean> {
     return this.loadTours$.asObservable();
   }
+
+  addTour(tour: ITour): Observable<ITour> {
+    return this.http.post<ITour>(this.apiUrl, tour);
+  }
 }

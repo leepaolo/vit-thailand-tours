@@ -1,1 +1,54 @@
-<p>create-tour works!</p>
+<form [formGroup]="tourForm" (ngSubmit)="onSubmit()">
+  <div class="lg:col-span-1 w-full">
+    <app-input-text
+      [placeholder]="'Title of the tour'"
+      formControlName="title"
+    ></app-input-text>
+  </div>
+
+  <div class="lg:col-span-1 w-full">
+    <app-input-text
+      [placeholder]="'Description of the tour'"
+      formControlName="mainDescription"
+    ></app-input-text>
+  </div>
+
+  <div class="lg:col-span-1 w-full">
+    <app-input-text
+      [placeholder]="'Step 1 description'"
+      formControlName="stepOne"
+    ></app-input-text>
+  </div>
+
+  <div class="lg:col-span-1 w-full">
+    <app-input-text
+      [placeholder]="'Step 2 description'"
+      formControlName="stepTwo"
+    ></app-input-text>
+  </div>
+
+  <div class="lg:col-span-1 w-full">
+    <app-input-text
+      [placeholder]="'Price for Adults'"
+      formControlName="priceAdult"
+    ></app-input-text>
+  </div>
+
+  <div class="lg:col-span-1 w-full">
+    <app-input-text
+      [placeholder]="'Price for Children'"
+      formControlName="priceChild"
+    ></app-input-text>
+  </div>
+
+  <div class="lg:col-span-1 w-full">
+    <app-input-text
+      [placeholder]="'Location'"
+      formControlName="location"
+    ></app-input-text>
+  </div>
+
+  <div class="lg:col-span-1 w-full">
+    <button type="submit" [disabled]="tourForm.invalid">Submit</button>
+  </div>
+</form>
