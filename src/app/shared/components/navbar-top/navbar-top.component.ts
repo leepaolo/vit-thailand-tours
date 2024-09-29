@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   CONTACT_PAGE_URL,
+  CREATE_TOUR_URL,
   HOME_PAGE_URL,
   TOURS_PAGE_URL,
 } from '../../../core/constants/navbar.constants';
@@ -19,5 +20,6 @@ export class NavbarTopComponent {
     { label: 'Home', route: HOME_PAGE_URL },
     { label: 'All Tours', route: TOURS_PAGE_URL },
     { label: 'Contact', route: CONTACT_PAGE_URL },
+    { label: 'Create New Tour', route: CREATE_TOUR_URL },
   ];
 }
