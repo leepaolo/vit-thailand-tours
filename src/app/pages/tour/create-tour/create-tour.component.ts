@@ -11,6 +11,10 @@ import { TourQueryService } from '../../../core/services/tour-query.service';
 import { Subscription } from 'rxjs';
 import { ITour } from '../../../core/models/tour.interface';
 import { TextAreaComponent } from '../../../shared/components/ui/text-area.component';
+import { InputSelectComponent } from '../../../shared/components/ui/input-select.component';
+import { TOUR_TIMES } from '../../../core/constants/tour-time.constants';
+import { TYPE_TOUR } from '../../../core/constants/type.constants';
+import { LOCATION } from '../../../core/constants/location.costants';
 
 @Component({
   selector: 'app-create-tour',
@@ -20,6 +24,7 @@ import { TextAreaComponent } from '../../../shared/components/ui/text-area.compo
     ReactiveFormsModule,
     InputTextComponent,
     TextAreaComponent,
+    InputSelectComponent,
   ],
   templateUrl: './create-tour.component.html',
   styleUrls: ['./create-tour.component.css'],
@@ -27,6 +32,9 @@ import { TextAreaComponent } from '../../../shared/components/ui/text-area.compo
 export class CreateTourComponent implements OnInit, OnDestroy {
   private destroy$ = new Subscription();
   tourForm!: FormGroup;
+  tourTimes = TOUR_TIMES;
+  tourTypeDay = TYPE_TOUR;
+  locationArea = LOCATION;
 
   constructor(private fb: FormBuilder, private tourQuery: TourQueryService) {}
 
@@ -39,9 +47,9 @@ export class CreateTourComponent implements OnInit, OnDestroy {
       location: [''],
       mainDescription: [''],
       tourType: [[]],
-      tourLanguage: [[]],
-      tourStartAt: [null],
-      tourFinishAt: [null],
+      language: [[]],
+      startAt: [null],
+      finishAt: [null],
       steps: this.fb.array([]), // Initialize FormArray for steps
     });
 
@@ -80,9 +88,9 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         tourPriceChild: this.tourForm.get('priceChild')?.value,
         tourLocation: this.tourForm.get('location')?.value,
         tourType: this.tourForm.get('tourType')?.value,
-        tourLanguage: this.tourForm.get('tourLanguage')?.value,
-        tourStartAt: this.tourForm.get('tourStartAt')?.value,
-        tourFinishAt: this.tourForm.get('tourFinishAt')?.value,
+        tourLanguage: this.tourForm.get('language')?.value,
+        tourStartAt: this.tourForm.get('startAt')?.value,
+        tourFinishAt: this.tourForm.get('finishAt')?.value,
         steps: this.steps.value, // Get all step blocks
       };
 

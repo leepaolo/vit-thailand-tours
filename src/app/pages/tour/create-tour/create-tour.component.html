@@ -21,10 +21,40 @@
   </div>
 
   <div class="lg:col-span-1 w-full">
-    <app-input-text
-      [placeholder]="'Location'"
+    <app-input-select
+      [label]="'Location'"
+      [placeholder]="'Select Location'"
+      [options]="locationArea"
       formControlName="location"
-    ></app-input-text>
+    ></app-input-select>
+  </div>
+
+  <!-- TIME START Section -->
+  <div class="lg:col-span-1 w-full">
+    <app-input-select
+      [label]="'Start At'"
+      [placeholder]="'Select Start Time'"
+      [options]="tourTimes"
+      formControlName="startAt"
+    ></app-input-select>
+  </div>
+
+  <div class="lg:col-span-1 w-full">
+    <app-input-select
+      [label]="'Finish At'"
+      [placeholder]="'Select Finish Time'"
+      [options]="tourTimes"
+      formControlName="finishAt"
+    ></app-input-select>
+  </div>
+
+  <div class="lg:col-span-1 w-full">
+    <app-input-select
+      [label]="'Type of tour'"
+      [placeholder]="'Select Type of Tour'"
+      [options]="tourTypeDay"
+      formControlName="tourType"
+    ></app-input-select>
   </div>
   <div class="lg:col-span-1 w-full">
     <app-text-area
@@ -32,7 +62,7 @@
       formControlName="mainDescription"
     ></app-text-area>
   </div>
-  <!-- Dynamic Step Section -->
+  <!-- Dynamic STEP Section -->
   <div formArrayName="steps">
     <div
       *ngFor="let step of steps.controls; let i = index"

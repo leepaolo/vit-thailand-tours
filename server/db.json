@@ -30,29 +30,25 @@
       ]
     },
     {
-      "id": "dl1psig3r",
+      "id": "ez21bswhj",
       "tourActive": true,
-      "tourTitle": "Chinatown by walking",
-      "tourMainDescription": "Walk aorund chintown and the best street food.",
-      "tourPriceAdult": "35",
-      "tourPriceChild": "22",
-      "tourLocation": "BKK",
-      "tourType": [],
+      "tourTitle": "Praradice beach ",
+      "tourMainDescription": "Enjoy the beuaty and white sand.",
+      "tourPriceAdult": "99",
+      "tourPriceChild": "23",
+      "tourLocation": "Koh Samui",
+      "tourType": "Half-day",
       "tourLanguage": [],
-      "tourStartAt": null,
-      "tourFinishAt": null,
+      "tourStartAt": "12:00",
+      "tourFinishAt": "20:00",
       "steps": [
         {
-          "tourStepTitle": "Pick at Asoke ",
-          "tourStepDescription": "Get ready and arrive on time at terminal 21"
+          "tourStepTitle": "Pick Malia hotel",
+          "tourStepDescription": "Get ready with freahc show"
         },
         {
-          "tourStepTitle": "Take the speedboat ",
-          "tourStepDescription": "We will cruise the river for 15 min until the pier"
-        },
-        {
-          "tourStepTitle": "Chinese breakfast",
-          "tourStepDescription": "We will take you to the one most icon resturant to get a nice morning meal."
+          "tourStepTitle": "Swim with delphins",
+          "tourStepDescription": "Let's go swim and get nice photos"
         }
       ]
     }

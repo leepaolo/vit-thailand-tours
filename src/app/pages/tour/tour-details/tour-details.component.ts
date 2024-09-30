@@ -1,20 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TourQueryService } from '../../../core/services/tour-query.service';
 import { ITour } from '../../../core/models/tour.interface';
-import { map, Observable, Subscription, switchMap } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-tour-details',
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './tour-details.component.html',
-  styleUrl: './tour-details.component.css',
+  styleUrls: ['./tour-details.component.css'], // Note: changed `styleUrl` to `styleUrls`
 })
 export class TourDetailsComponent implements OnInit {
   tour$!: Observable<ITour | undefined>;
-  location: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +21,7 @@ export class TourDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Load the tour details based on the tourTitle parameter in the URL
     this.tour$ = this.route.params.pipe(
       map((params) => params['tourTitle']),
       switchMap((tourTitle) =>
@@ -39,10 +39,17 @@ export class TourDetailsComponent implements OnInit {
     );
   }
 
+  // Go back to the previous location
   goBack(): void {
-    this.location.back();
+    window.history.back(); // Use window.history.back() to navigate back
   }
 
+  // Utility method to check if a value is an array
+  isArray(value: any): boolean {
+    return Array.isArray(value);
+  }
+
+  // Create a slug from the title for matching purposes
   createSlug(title: string): string {
     return title
       .toLowerCase()
