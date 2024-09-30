@@ -8,27 +8,6 @@
 
   <div class="lg:col-span-1 w-full">
     <app-input-text
-      [placeholder]="'Description of the tour'"
-      formControlName="mainDescription"
-    ></app-input-text>
-  </div>
-
-  <div class="lg:col-span-1 w-full">
-    <app-input-text
-      [placeholder]="'Step 1 description'"
-      formControlName="stepOne"
-    ></app-input-text>
-  </div>
-
-  <div class="lg:col-span-1 w-full">
-    <app-input-text
-      [placeholder]="'Step 2 description'"
-      formControlName="stepTwo"
-    ></app-input-text>
-  </div>
-
-  <div class="lg:col-span-1 w-full">
-    <app-input-text
       [placeholder]="'Price for Adults'"
       formControlName="priceAdult"
     ></app-input-text>
@@ -46,6 +25,27 @@
       [placeholder]="'Location'"
       formControlName="location"
     ></app-input-text>
+  </div>
+
+  <div class="lg:col-span-1 w-full">
+    <app-text-area
+      [placeholder]="'Description of the tour'"
+      formControlName="mainDescription"
+    ></app-text-area>
+  </div>
+
+  <div class="lg:col-span-1 w-full">
+    <app-input-text
+      [placeholder]="'Add step title'"
+      formControlName="stepTitle"
+    ></app-input-text>
+  </div>
+
+  <div class="lg:col-span-1 w-full">
+    <app-text-area
+      [placeholder]="'Description of the tour'"
+      formControlName="stepDescription"
+    ></app-text-area>
   </div>
 
   <div class="lg:col-span-1 w-full">

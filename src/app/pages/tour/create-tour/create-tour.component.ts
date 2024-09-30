@@ -1,15 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { InputTextComponent } from '../../../shared/components/ui/input-text/input-text.component';
+import { InputTextComponent } from '../../../shared/components/ui/input-text.component';
 import { TourQueryService } from '../../../core/services/tour-query.service';
 import { Subscription } from 'rxjs';
 import { ITour } from '../../../core/models/tour.interface';
+import { TextAreaComponent } from '../../../shared/components/ui/text-area.component';
 
 @Component({
   selector: 'app-create-tour',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, InputTextComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    InputTextComponent,
+    TextAreaComponent,
+  ],
   templateUrl: './create-tour.component.html',
   styleUrl: './create-tour.component.css',
 })
@@ -19,17 +25,17 @@ export class CreateTourComponent implements OnInit, OnDestroy {
 
   // Existing fields
   tourActiveField: boolean = true;
-  titleField: string = 'Title of the tour';
-  mainDescriptionField: string = 'Description of the tour';
-  tourStepOneField: string = 'Step 1 description';
-  tourStepTwoField: string = 'Step 2 description';
+  titleField: string | null = null;
+  mainDescriptionField: string | null = null;
+  tourStepTitleField: string | null = null;
+  tourStepDescriptionField: string | null = null;
   tourPriceAdultField: number | null = null;
   tourPriceChildField: number | null = null;
-  tourLocationField: string = 'Default Location';
-  tourTypeField: string[] = ['Halfday', 'Fullday'];
-  tourLanguageField: string[] = ['English', 'Italian'];
-  tourStartAtField: string = '10:00 AM';
-  tourFinishAtField: string = '2:00 PM';
+  tourLocationField: string | null = null;
+  tourTypeField: string[] | null = null;
+  tourLanguageField: string[] | null = null;
+  tourStartAtField: string | null = null;
+  tourFinishAtField: string | null = null;
 
   constructor(private fb: FormBuilder, private tourQuery: TourQueryService) {}
 
@@ -37,8 +43,8 @@ export class CreateTourComponent implements OnInit, OnDestroy {
     this.tourForm = this.fb.group({
       title: [''],
       mainDescription: [''],
-      stepOne: [''],
-      stepTwo: [''],
+      stepTitle: [''],
+      stepDescription: [''],
       priceAdult: [null],
       priceChild: [null],
       location: [''],
@@ -56,8 +62,8 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         tourActive: this.tourActiveField,
         tourTitle: this.tourForm.get('title')?.value,
         tourMainDescription: this.tourForm.get('mainDescription')?.value,
-        tourStepOne: this.tourForm.get('stepOne')?.value,
-        tourStepTwo: this.tourForm.get('stepTwo')?.value,
+        tourStepTitle: this.tourForm.get('stepTitle')?.value,
+        tourStepDescription: this.tourForm.get('stepDescription')?.value,
         tourPriceAdult: this.tourForm.get('priceAdult')?.value,
         tourPriceChild: this.tourForm.get('priceChild')?.value,
         tourLocation: this.tourForm.get('location')?.value,

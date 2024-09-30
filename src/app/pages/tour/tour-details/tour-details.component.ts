@@ -40,7 +40,7 @@ export class TourDetailsComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back(); // Use Location service to go back
+    this.location.back();
   }
 
   createSlug(title: string): string {

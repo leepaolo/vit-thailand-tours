@@ -2,14 +2,23 @@
   <h2 class="text-2xl font-bold">{{ tour.tourTitle }}</h2>
   <p>{{ tour.tourStartAt }}</p>
   <p>{{ tour.tourFinishAt }}</p>
-  <p>{{ tour.tourMainDescription }}</p>
-  <p>Tour type: {{ tour.tourType.join(",") }}</p>
-  <p>Tour languages: {{ tour.tourLanguage.join(", ") }}</p>
-  <p>{{ tour.tourStepOne }}</p>
-  <p>{{ tour.tourStepTwo }}</p>
+
+  <!-- Safely handle tourType -->
+  <p *ngIf="tour.tourType">Tour type: {{ tour.tourType?.join(", ") }}</p>
+  <p *ngIf="!tour.tourType">Tour type: N/A</p>
+
+  <!-- Safely handle tourLanguage -->
+  <p *ngIf="tour.tourLanguage">
+    Tour languages: {{ tour.tourLanguage?.join(", ") }}
+  </p>
+  <p *ngIf="!tour.tourLanguage">Tour languages: N/A</p>
+
   <p>Location: {{ tour.tourLocation }}</p>
   <p>Price for adults: ${{ tour.tourPriceAdult }}</p>
   <p>Price for child: ${{ tour.tourPriceChild }}</p>
+  <p>{{ tour.tourMainDescription }}</p>
+  <p>{{ tour.tourStepTitle }}</p>
+  <p>{{ tour.tourStepDescription }}</p>
 
   <!-- Go Back Link to Tour List -->
   <a [routerLink]="['/all-tours']" class="text-blue-600 hover:underline mt-4"

@@ -2,8 +2,8 @@ interface ITourInfo {
   id: string;
   tourTitle: string;
   tourMainDescription: string;
-  tourStepOne: string;
-  tourStepTwo: string;
+  tourStepTitle: string;
+  tourStepDescription: string;
 }
 
 interface ITourPricing {
