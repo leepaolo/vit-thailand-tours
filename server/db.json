@@ -1,0 +1,44 @@
+{
+  "tour-bd": [
+    {
+      "id": 1,
+      "tourTitle": "Historical City Tour",
+      "tourMainDescription": "Explore the city's rich history on this comprehensive tour.",
+      "tourStepOne": "Meet at the central square.",
+      "tourStepTwo": "Visit the ancient museum.",
+      "tourPriceAdult": 50,
+      "tourPriceChild": 25,
+      "tourLocation": "Bangkok",
+      "tourType": [
+        "Halfday",
+        "Fullday"
+      ],
+      "tourLanguage": [
+        "English",
+        "Italian"
+      ],
+      "tourStartAt": "4:00 PM",
+      "tourFinishAt": "8:00 PM",
+      "tourActive": true
+    },
+    {
+      "id": 2,
+      "tourTitle": "Sunset Beach Adventure",
+      "tourMainDescription": "Relax on the beach and enjoy a beautiful sunset.",
+      "tourStepOne": "Gather at the harbor.",
+      "tourStepTwo": "Board the boat for a beach journey.",
+      "tourPriceAdult": 80,
+      "tourPriceChild": 40,
+      "tourLocation": "Bangkok",
+      "tourType": [
+        "Fullday"
+      ],
+      "tourLanguage": [
+        "English"
+      ],
+      "tourStartAt": "4:00 PM",
+      "tourFinishAt": "8:00 PM",
+      "tourActive": true
+    }
+  ]
+}

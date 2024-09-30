@@ -8,7 +8,7 @@ import { ITour } from '../models/tour.interface';
   providedIn: 'root',
 })
 export class TourQueryService {
-  private readonly apiUrl = `${environment.API_BASE_URL}/tourDB.json`;
+  private readonly apiUrl = `${environment.API_BASE_URL}/tour-bd`;
   private loadTours$ = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {}
