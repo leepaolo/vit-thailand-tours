@@ -1,11 +1,9 @@
 {
   "tour-bd": [
     {
-      "id": 1,
+      "id": "tqc7rpsr1",
       "tourTitle": "Historical City Tour",
       "tourMainDescription": "Explore the city's rich history on this comprehensive tour.",
-      "tourStepTitle": "Meet at the central square.",
-      "tourStepDescription": "Visit the ancient museum.",
       "tourPriceAdult": 50,
       "tourPriceChild": 25,
       "tourLocation": "Bangkok",
@@ -19,26 +17,44 @@
       ],
       "tourStartAt": "4:00 PM",
       "tourFinishAt": "8:00 PM",
-      "tourActive": true
+      "tourActive": true,
+      "steps": [
+        {
+          "tourStepTitle": "Meet at the central square.",
+          "tourStepDescription": "Introduction to the city's history."
+        },
+        {
+          "tourStepTitle": "Visit the ancient museum.",
+          "tourStepDescription": "Explore the museum's historical artifacts."
+        }
+      ]
     },
     {
-      "id": 2,
-      "tourTitle": "Sunset Beach Adventure",
-      "tourMainDescription": "Relax on the beach and enjoy a beautiful sunset.",
-      "tourStepTitle": "Meet at the central square.",
-      "tourStepDescription": "Visit the ancient museum.",
-      "tourPriceAdult": 80,
-      "tourPriceChild": 40,
-      "tourLocation": "Bangkok",
-      "tourType": [
-        "Fullday"
-      ],
-      "tourLanguage": [
-        "English"
-      ],
-      "tourStartAt": "4:00 PM",
-      "tourFinishAt": "8:00 PM",
-      "tourActive": true
+      "id": "dl1psig3r",
+      "tourActive": true,
+      "tourTitle": "Chinatown by walking",
+      "tourMainDescription": "Walk aorund chintown and the best street food.",
+      "tourPriceAdult": "35",
+      "tourPriceChild": "22",
+      "tourLocation": "BKK",
+      "tourType": [],
+      "tourLanguage": [],
+      "tourStartAt": null,
+      "tourFinishAt": null,
+      "steps": [
+        {
+          "tourStepTitle": "Pick at Asoke ",
+          "tourStepDescription": "Get ready and arrive on time at terminal 21"
+        },
+        {
+          "tourStepTitle": "Take the speedboat ",
+          "tourStepDescription": "We will cruise the river for 15 min until the pier"
+        },
+        {
+          "tourStepTitle": "Chinese breakfast",
+          "tourStepDescription": "We will take you to the one most icon resturant to get a nice morning meal."
+        }
+      ]
     }
   ]
 }

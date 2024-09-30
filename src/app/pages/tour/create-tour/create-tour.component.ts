@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { InputTextComponent } from '../../../shared/components/ui/input-text.component';
 import { TourQueryService } from '../../../core/services/tour-query.service';
 import { Subscription } from 'rxjs';
@@ -17,53 +22,60 @@ import { TextAreaComponent } from '../../../shared/components/ui/text-area.compo
     TextAreaComponent,
   ],
   templateUrl: './create-tour.component.html',
-  styleUrl: './create-tour.component.css',
+  styleUrls: ['./create-tour.component.css'],
 })
 export class CreateTourComponent implements OnInit, OnDestroy {
   private destroy$ = new Subscription();
   tourForm!: FormGroup;
 
-  // Existing fields
-  tourActiveField: boolean = true;
-  titleField: string | null = null;
-  mainDescriptionField: string | null = null;
-  tourStepTitleField: string | null = null;
-  tourStepDescriptionField: string | null = null;
-  tourPriceAdultField: number | null = null;
-  tourPriceChildField: number | null = null;
-  tourLocationField: string | null = null;
-  tourTypeField: string[] | null = null;
-  tourLanguageField: string[] | null = null;
-  tourStartAtField: string | null = null;
-  tourFinishAtField: string | null = null;
-
   constructor(private fb: FormBuilder, private tourQuery: TourQueryService) {}
 
   ngOnInit(): void {
+    // Initialize the form
     this.tourForm = this.fb.group({
       title: [''],
-      mainDescription: [''],
-      stepTitle: [''],
-      stepDescription: [''],
       priceAdult: [null],
       priceChild: [null],
       location: [''],
-      tourType: [this.tourTypeField],
-      tourLanguage: [this.tourLanguageField],
-      tourStartAt: [this.tourStartAtField],
-      tourFinishAt: [this.tourFinishAtField],
+      mainDescription: [''],
+      tourType: [[]],
+      tourLanguage: [[]],
+      tourStartAt: [null],
+      tourFinishAt: [null],
+      steps: this.fb.array([]), // Initialize FormArray for steps
     });
+
+    // Add a default step (title and description)
+    this.addStep();
   }
 
+  // Getter to access the steps FormArray
+  get steps(): FormArray {
+    return this.tourForm.get('steps') as FormArray;
+  }
+
+  // Method to add a new step
+  addStep(): void {
+    const stepForm = this.fb.group({
+      tourStepTitle: [''], // This should match the interface's property name
+      tourStepDescription: [''], // This should match the interface's property name
+    });
+    this.steps.push(stepForm);
+  }
+
+  // Method to remove a step by index
+  removeStep(index: number): void {
+    this.steps.removeAt(index);
+  }
+
+  // Handle form submission
   onSubmit(): void {
     if (this.tourForm.valid) {
       const newTour: ITour = {
         id: Math.random().toString(36).substr(2, 9), // Generate a unique ID
-        tourActive: this.tourActiveField,
+        tourActive: true,
         tourTitle: this.tourForm.get('title')?.value,
         tourMainDescription: this.tourForm.get('mainDescription')?.value,
-        tourStepTitle: this.tourForm.get('stepTitle')?.value,
-        tourStepDescription: this.tourForm.get('stepDescription')?.value,
         tourPriceAdult: this.tourForm.get('priceAdult')?.value,
         tourPriceChild: this.tourForm.get('priceChild')?.value,
         tourLocation: this.tourForm.get('location')?.value,
@@ -71,8 +83,13 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         tourLanguage: this.tourForm.get('tourLanguage')?.value,
         tourStartAt: this.tourForm.get('tourStartAt')?.value,
         tourFinishAt: this.tourForm.get('tourFinishAt')?.value,
+        steps: this.steps.value, // Get all step blocks
       };
 
+      // Log the data to inspect it
+      console.log(newTour);
+
+      // Save the tour via the service
       this.tourQuery.addTour(newTour).subscribe({
         next: (tour) => {
           console.log('Tour added successfully', tour);
@@ -83,6 +100,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Clean up subscriptions on destroy
   ngOnDestroy(): void {
     if (this.destroy$) {
       this.destroy$.unsubscribe();

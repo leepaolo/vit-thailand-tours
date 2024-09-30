@@ -26,27 +26,39 @@
       formControlName="location"
     ></app-input-text>
   </div>
-
   <div class="lg:col-span-1 w-full">
     <app-text-area
       [placeholder]="'Description of the tour'"
       formControlName="mainDescription"
     ></app-text-area>
   </div>
+  <!-- Dynamic Step Section -->
+  <div formArrayName="steps">
+    <div
+      *ngFor="let step of steps.controls; let i = index"
+      [formGroupName]="i"
+      class="step-block"
+    >
+      <div class="lg:col-span-1 w-full">
+        <app-input-text
+          [placeholder]="'Step Title'"
+          formControlName="tourStepTitle"
+        ></app-input-text>
+      </div>
+      <div class="lg:col-span-1 w-full">
+        <app-text-area
+          [placeholder]="'Step Description'"
+          formControlName="tourStepDescription"
+        ></app-text-area>
+      </div>
 
-  <div class="lg:col-span-1 w-full">
-    <app-input-text
-      [placeholder]="'Add step title'"
-      formControlName="stepTitle"
-    ></app-input-text>
+      <!-- Button to remove step -->
+      <button type="button" (click)="removeStep(i)">Remove Step</button>
+    </div>
   </div>
 
-  <div class="lg:col-span-1 w-full">
-    <app-text-area
-      [placeholder]="'Description of the tour'"
-      formControlName="stepDescription"
-    ></app-text-area>
-  </div>
+  <!-- Button to add new step block -->
+  <button type="button" (click)="addStep()">Add Another Step</button>
 
   <div class="lg:col-span-1 w-full">
     <button type="submit" [disabled]="tourForm.invalid">Submit</button>

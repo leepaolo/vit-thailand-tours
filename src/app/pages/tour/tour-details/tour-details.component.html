@@ -15,10 +15,25 @@
 
   <p>Location: {{ tour.tourLocation }}</p>
   <p>Price for adults: ${{ tour.tourPriceAdult }}</p>
-  <p>Price for child: ${{ tour.tourPriceChild }}</p>
+  <p>Price for children: ${{ tour.tourPriceChild }}</p>
   <p>{{ tour.tourMainDescription }}</p>
-  <p>{{ tour.tourStepTitle }}</p>
-  <p>{{ tour.tourStepDescription }}</p>
+
+  <!-- Render Steps -->
+  <div *ngIf="tour$ | async as tour">
+    <h3 class="text-xl font-bold mt-4">Tour Steps:</h3>
+    <ul>
+      <li *ngFor="let step of tour.steps; let i = index" class="mt-2">
+        <p>
+          <strong>Step {{ i + 1 }}:</strong> {{ step.tourStepTitle }}
+        </p>
+        <p>{{ step.tourStepDescription }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="tour.steps?.length === 0">
+    <p>No steps available for this tour.</p>
+  </div>
 
   <!-- Go Back Link to Tour List -->
   <a [routerLink]="['/all-tours']" class="text-blue-600 hover:underline mt-4"

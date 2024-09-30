@@ -1,9 +1,12 @@
+interface ITourStep {
+  tourStepTitle: string;
+  tourStepDescription: string;
+}
+
 interface ITourInfo {
   id: string;
   tourTitle: string;
   tourMainDescription: string;
-  tourStepTitle: string;
-  tourStepDescription: string;
 }
 
 interface ITourPricing {
@@ -20,4 +23,6 @@ interface ITourMeta {
   tourFinishAt: string; // Finish time, e.g., '2:00 PM'
 }
 
-export interface ITour extends ITourInfo, ITourPricing, ITourMeta {}
+export interface ITour extends ITourInfo, ITourPricing, ITourMeta {
+  steps: ITourStep[]; // Add steps array
+}
