@@ -1,5 +1,5 @@
 <!-- Conditional section that shows when the tour is created -->
-<div
+<!-- <div
   *ngIf="isTourCreated; else formSection"
   class="mt-6 p-4 bg-green-100 rounded-lg"
 >
@@ -9,124 +9,123 @@
     [text]="'Create New Tour'"
     (click)="isTourCreated = false"
   ></app-button>
-</div>
+</div> -->
 
 <!-- Form Section: Hidden when tour is created -->
-<ng-template #formSection>
-  <form [formGroup]="tourForm" (ngSubmit)="onSubmit()">
-    <section class="grid grid-cols-1 md:grid-cols-2 p-4 gap-8">
-      <!-- Grid item 1: Regular form fields -->
-      <div>
-        <h2 class="text-xl">General specifics</h2>
+<!-- <ng-template #formSection></ng-template> -->
+<form [formGroup]="tourForm" (ngSubmit)="onSubmit()">
+  <section class="grid grid-cols-1 md:grid-cols-2 p-4 gap-8">
+    <!-- Grid item 1: Regular form fields -->
+    <div>
+      <h2 class="text-xl">General specifics</h2>
+      <div class="w-full">
+        <app-input-text
+          [placeholder]="'Title of the tour'"
+          formControlName="title"
+        ></app-input-text>
+      </div>
+      <!-- PRICE SECTION -->
+      <section class="flex items-center gap-3">
         <div class="w-full">
           <app-input-text
-            [placeholder]="'Title of the tour'"
-            formControlName="title"
+            [placeholder]="'Price for Adults'"
+            formControlName="priceAdult"
           ></app-input-text>
         </div>
-        <!-- PRICE SECTION -->
-        <section class="flex items-center gap-3">
-          <div class="w-full">
-            <app-input-text
-              [placeholder]="'Price for Adults'"
-              formControlName="priceAdult"
-            ></app-input-text>
-          </div>
 
-          <div class="w-full">
-            <app-input-text
-              [placeholder]="'Price for Children'"
-              formControlName="priceChild"
-            ></app-input-text>
-          </div>
-        </section>
-
-        <!-- LOCATION AND TYPE SECTION -->
-        <section class="flex items-center gap-3">
-          <div class="w-full">
-            <app-input-select
-              [placeholder]="'Select Location'"
-              [options]="locationArea"
-              formControlName="location"
-            ></app-input-select>
-          </div>
-
-          <div class="w-full">
-            <app-input-select
-              [placeholder]="'Select Type of Tour'"
-              [options]="tourTypeDay"
-              formControlName="tourType"
-            ></app-input-select>
-          </div>
-        </section>
-
-        <!-- TIME START SECTION -->
-        <section class="flex items-center gap-3">
-          <div class="w-full">
-            <app-input-select
-              [placeholder]="'Select Start Time'"
-              [options]="tourTimes"
-              formControlName="startAt"
-            ></app-input-select>
-          </div>
-
-          <div class="w-full">
-            <app-input-select
-              [placeholder]="'Select Finish Time'"
-              [options]="tourTimes"
-              formControlName="finishAt"
-            ></app-input-select>
-          </div>
-        </section>
-
-        <!-- MAIN DESCRIPTION SECTION -->
         <div class="w-full">
-          <app-text-area
-            [placeholder]="'Description of the tour'"
-            formControlName="mainDescription"
-          ></app-text-area>
+          <app-input-text
+            [placeholder]="'Price for Children'"
+            formControlName="priceChild"
+          ></app-input-text>
         </div>
-      </div>
+      </section>
 
-      <!-- Grid item 2: Dynamic step section -->
-      <div>
-        <h2 class="text-xl">Describe the itinerary</h2>
-        <div formArrayName="steps">
-          <div
-            *ngFor="let step of steps.controls; let i = index"
-            [formGroupName]="i"
-            class="step-block"
-          >
-            <div class="w-full">
-              <app-input-text
-                [placeholder]="'Step Title'"
-                formControlName="tourStepTitle"
-              ></app-input-text>
-            </div>
-
-            <div class="w-full">
-              <app-text-area
-                [placeholder]="'Step Description'"
-                formControlName="tourStepDescription"
-              ></app-text-area>
-            </div>
-
-            <!-- Button to remove step -->
-            <app-button
-              [text]="'Remove step'"
-              (click)="removeStep(i)"
-            ></app-button>
-          </div>
+      <!-- LOCATION AND TYPE SECTION -->
+      <section class="flex items-center gap-3">
+        <div class="w-full">
+          <app-input-select
+            [placeholder]="'Select Location'"
+            [options]="locationArea"
+            formControlName="location"
+          ></app-input-select>
         </div>
 
-        <!-- Button to add new step block -->
-        <app-button [text]="'Add next step'" (click)="addStep()"></app-button>
-      </div>
-    </section>
+        <div class="w-full">
+          <app-input-select
+            [placeholder]="'Select Type of Tour'"
+            [options]="tourTypeDay"
+            formControlName="tourType"
+          ></app-input-select>
+        </div>
+      </section>
 
-    <!-- Submit button -->
-    <div class="w-full mt-4">
-      <app-button [text]="isEdit ? 'Update Tour' : 'Create Tour'"></app-button>
+      <!-- TIME START SECTION -->
+      <section class="flex items-center gap-3">
+        <div class="w-full">
+          <app-input-select
+            [placeholder]="'Select Start Time'"
+            [options]="tourTimes"
+            formControlName="startAt"
+          ></app-input-select>
+        </div>
+
+        <div class="w-full">
+          <app-input-select
+            [placeholder]="'Select Finish Time'"
+            [options]="tourTimes"
+            formControlName="finishAt"
+          ></app-input-select>
+        </div>
+      </section>
+
+      <!-- MAIN DESCRIPTION SECTION -->
+      <div class="w-full">
+        <app-text-area
+          [placeholder]="'Description of the tour'"
+          formControlName="mainDescription"
+        ></app-text-area>
+      </div>
     </div>
-  </form>
-</ng-template>
+
+    <!-- Grid item 2: Dynamic step section -->
+    <div>
+      <h2 class="text-xl">Describe the itinerary</h2>
+      <div formArrayName="steps">
+        <div
+          *ngFor="let step of steps.controls; let i = index"
+          [formGroupName]="i"
+          class="step-block"
+        >
+          <div class="w-full">
+            <app-input-text
+              [placeholder]="'Step Title'"
+              formControlName="tourStepTitle"
+            ></app-input-text>
+          </div>
+
+          <div class="w-full">
+            <app-text-area
+              [placeholder]="'Step Description'"
+              formControlName="tourStepDescription"
+            ></app-text-area>
+          </div>
+
+          <!-- Button to remove step -->
+          <app-button
+            [text]="'Remove step'"
+            (click)="removeStep(i)"
+          ></app-button>
+        </div>
+      </div>
+
+      <!-- Button to add new step block -->
+      <app-button [text]="'Add next step'" (click)="addStep()"></app-button>
+    </div>
+  </section>
+
+  <!-- Submit button -->
+  <div class="w-full mt-4">
+    <app-button [text]="isEdit ? 'Update Tour' : 'Create Tour'"></app-button>
+  </div>
+</form>
