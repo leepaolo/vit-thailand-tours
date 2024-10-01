@@ -74,29 +74,6 @@
           "tourStepDescription": "Get some fresh bananas e feed the little monkey"
         }
       ]
-    },
-    {
-      "id": "l1b32cgwx",
-      "tourActive": true,
-      "tourTitle": "Nana explore",
-      "tourMainDescription": "description",
-      "tourPriceAdult": "33",
-      "tourPriceChild": "45",
-      "tourLocation": "Bangkok",
-      "tourType": "Half-day",
-      "tourLanguage": [],
-      "tourStartAt": "15:00",
-      "tourFinishAt": "19:00",
-      "steps": [
-        {
-          "tourStepTitle": "Sep 1",
-          "tourStepDescription": "step1 description"
-        },
-        {
-          "tourStepTitle": "",
-          "tourStepDescription": ""
-        }
-      ]
     }
   ]
 }

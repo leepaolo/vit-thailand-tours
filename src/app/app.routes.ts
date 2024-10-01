@@ -22,6 +22,7 @@ export const routes: Routes = [
     path: 'create-tour',
     component: CreateTourComponent,
   },
+  { path: 'create-tour/:id', component: CreateTourComponent },
   {
     path: ':tourTitle',
     component: TourDetailsComponent,

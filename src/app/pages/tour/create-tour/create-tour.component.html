@@ -120,7 +120,11 @@
       </div>
 
       <!-- Button to add new step block -->
-      <app-button [text]="'Add next step'" (click)="addStep()"></app-button>
+      <app-button
+        [text]="'Add next step'"
+        [type]="'button'"
+        (click)="addStep()"
+      ></app-button>
     </div>
   </section>
 

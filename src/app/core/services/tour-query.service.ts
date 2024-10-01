@@ -47,6 +47,13 @@ export class TourQueryService {
     );
   }
 
+  // Get a tour by ID
+  // getTourById(id: string): Observable<ITour> {
+  //   return this.http.get<ITour>(`${this.apiUrl}/${id}`).pipe(
+  //     map((tour) => tour) // Directly return the tour object
+  //   );
+  // }
+
   // Add a new tour
   addTour(tour: ITour): Observable<ITour> {
     return this.http.post<ITour>(this.apiUrl, tour).pipe(
