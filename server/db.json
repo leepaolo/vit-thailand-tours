@@ -2,7 +2,7 @@
   "tour-bd": [
     {
       "id": "tqc7rpsr1",
-      "tourTitle": "Historical City Tour",
+      "tourTitle": "Historical City Tour Explore the city's rich history",
       "tourMainDescription": "Explore the city's rich history on this comprehensive tour.",
       "tourPriceAdult": 50,
       "tourPriceChild": 25,
@@ -49,6 +49,52 @@
         {
           "tourStepTitle": "Swim with delphins",
           "tourStepDescription": "Let's go swim and get nice photos"
+        }
+      ]
+    },
+    {
+      "id": "0nmmhygb8",
+      "tourActive": true,
+      "tourTitle": "Walking alone with us",
+      "tourMainDescription": "Walk with us around the old Phuket town",
+      "tourPriceAdult": "56",
+      "tourPriceChild": "12",
+      "tourLocation": "Phuket",
+      "tourType": "Full-day",
+      "tourLanguage": [],
+      "tourStartAt": "10:00",
+      "tourFinishAt": "17:00",
+      "steps": [
+        {
+          "tourStepTitle": "Pick at the hotel",
+          "tourStepDescription": "Get ready to go by taxi"
+        },
+        {
+          "tourStepTitle": "Breakfats with monkey",
+          "tourStepDescription": "Get some fresh bananas e feed the little monkey"
+        }
+      ]
+    },
+    {
+      "id": "l1b32cgwx",
+      "tourActive": true,
+      "tourTitle": "Nana explore",
+      "tourMainDescription": "description",
+      "tourPriceAdult": "33",
+      "tourPriceChild": "45",
+      "tourLocation": "Bangkok",
+      "tourType": "Half-day",
+      "tourLanguage": [],
+      "tourStartAt": "15:00",
+      "tourFinishAt": "19:00",
+      "steps": [
+        {
+          "tourStepTitle": "Sep 1",
+          "tourStepDescription": "step1 description"
+        },
+        {
+          "tourStepTitle": "",
+          "tourStepDescription": ""
         }
       ]
     }

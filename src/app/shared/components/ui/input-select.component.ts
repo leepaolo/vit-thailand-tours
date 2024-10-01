@@ -21,7 +21,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
         (change)="onSelectChange($event)"
         (blur)="onTouched()"
         [disabled]="isDisabled"
-        class="block w-full px-5 py-2.5 mt-2 bg-white border border-gray-200 rounded-lg text-gray-700  focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
+        class="block w-full px-5 py-2.5 mt-2 bg-white border border-gray-200 rounded-lg text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
       >
         <!-- Placeholder Option (disabled and pre-selected) -->
         <option *ngIf="placeholder" value="" disabled selected>

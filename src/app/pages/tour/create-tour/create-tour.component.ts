@@ -8,13 +8,14 @@ import {
 } from '@angular/forms';
 import { InputTextComponent } from '../../../shared/components/ui/input-text.component';
 import { TourQueryService } from '../../../core/services/tour-query.service';
-import { Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { ITour } from '../../../core/models/tour.interface';
 import { TextAreaComponent } from '../../../shared/components/ui/text-area.component';
 import { InputSelectComponent } from '../../../shared/components/ui/input-select.component';
 import { TOUR_TIMES } from '../../../core/constants/tour-time.constants';
 import { TYPE_TOUR } from '../../../core/constants/type.constants';
 import { LOCATION } from '../../../core/constants/location.costants';
+import { ButtonComponent } from '../../../shared/components/ui/button.component';
 
 @Component({
   selector: 'app-create-tour',
@@ -22,6 +23,7 @@ import { LOCATION } from '../../../core/constants/location.costants';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    ButtonComponent,
     InputTextComponent,
     TextAreaComponent,
     InputSelectComponent,
@@ -35,6 +37,9 @@ export class CreateTourComponent implements OnInit, OnDestroy {
   tourTimes = TOUR_TIMES;
   tourTypeDay = TYPE_TOUR;
   locationArea = LOCATION;
+  isTheTourCreated$: Observable<boolean> = of(false);
+  isTourCreated = false;
+  isEdit = false;
 
   constructor(private fb: FormBuilder, private tourQuery: TourQueryService) {}
 
@@ -55,6 +60,18 @@ export class CreateTourComponent implements OnInit, OnDestroy {
 
     // Add a default step (title and description)
     this.addStep();
+
+    // Subscribe to the observable
+    this.isTheTourCreated$ = this.tourQuery.isTourCreatedObservable(); // Ensure the observable is provided by the service
+
+    this.isTheTourCreated$.subscribe({
+      next: (created) => {
+        this.isTourCreated = created; // Update the local boolean to control form visibility
+      },
+      error: (err) => {
+        console.error('Error subscribing to isTheTourCreated$', err);
+      },
+    });
   }
 
   // Getter to access the steps FormArray
