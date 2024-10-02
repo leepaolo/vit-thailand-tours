@@ -24,11 +24,11 @@ export class TourListComponent implements OnInit, OnDestroy {
     this.fetchTours();
   }
 
-  // onManageTour(tour: ITour): void {
-  //   if (tour) {
-  //     this.router.navigate(['/create-tour', tour.id]);
-  //   }
-  // }
+  onManageTour(tour: ITour): void {
+    if (tour) {
+      this.router.navigate(['/create-tour', tour.id]);
+    }
+  }
 
   fetchTours(): void {
     this.destroy$ = this.tourQuery.getTours().subscribe((tours) => {

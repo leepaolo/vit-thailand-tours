@@ -1,7 +1,7 @@
 <div *ngIf="tours$ | async as tours; else noTours">
   <div *ngFor="let tour of tours" class="tour-item">
     <div class="p-2">
-      <!-- <p class="cursor-pointer" (click)="onManageTour(tour)">Manage tour</p> -->
+      <p class="cursor-pointer" (click)="onManageTour(tour)">Manage tour</p>
       <h3 class="text-xl font-bold">
         <a
           [routerLink]="['/', createSlug(tour.tourTitle)]"

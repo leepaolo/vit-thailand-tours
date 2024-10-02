@@ -48,11 +48,11 @@ export class TourQueryService {
   }
 
   // Get a tour by ID
-  // getTourById(id: string): Observable<ITour> {
-  //   return this.http.get<ITour>(`${this.apiUrl}/${id}`).pipe(
-  //     map((tour) => tour) // Directly return the tour object
-  //   );
-  // }
+  getTourById(id: string): Observable<ITour> {
+    return this.http.get<ITour>(`${this.apiUrl}/${id}`).pipe(
+      map((tour) => tour) // Directly return the tour object
+    );
+  }
 
   // Add a new tour
   addTour(tour: ITour): Observable<ITour> {
@@ -74,11 +74,11 @@ export class TourQueryService {
     );
   }
 
-  // Delete a tour
-  deleteTour(tour: ITour): Observable<ITour> {
-    return this.http.delete<ITour>(`${this.apiUrl}/${tour.id}`).pipe(
+  // Delete a tour by its ID
+  deleteTour(tourId: string): Observable<ITour> {
+    return this.http.delete<ITour>(`${this.apiUrl}/${tourId}`).pipe(
       map((deletedTour) => {
-        this.tourCreated$.next(true);
+        this.tourCreated$.next(true); // Emit the tour deletion event
         return deletedTour;
       })
     );
