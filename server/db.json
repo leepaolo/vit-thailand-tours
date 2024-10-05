@@ -35,16 +35,20 @@
       "tourTitle": "Praradice beach ",
       "tourMainDescription": "Enjoy the beuaty and white sand.",
       "tourPriceAdult": "99",
-      "tourPriceChild": "23",
+      "tourPriceChild": "180",
       "tourLocation": "Koh Samui",
-      "tourType": "Half-day",
+      "tourType": "Full-day",
       "tourLanguage": [],
       "tourStartAt": "12:00",
-      "tourFinishAt": "20:00",
+      "tourFinishAt": "16:00",
       "steps": [
         {
           "tourStepTitle": "Pick Malia hotel",
           "tourStepDescription": "Get ready with freahc show"
+        },
+        {
+          "tourStepTitle": "step 1 hotel",
+          "tourStepDescription": "ciao buon viaggio"
         }
       ]
     }
