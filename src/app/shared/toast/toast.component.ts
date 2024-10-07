@@ -17,8 +17,8 @@ import { ToastType } from './toastType.enum';
     >
       {{ message.text }}
     </div>
-    <button (click)="showToast(messageTypes.SUCCESS)">Show SUCCESS</button>
-    <button (click)="showToast(messageTypes.WARNING)">Show WARNING</button>
+    <!-- <button (click)="showToast(messageTypes.SUCCESS)">Show SUCCESS</button>
+    <button (click)="showToast(messageTypes.WARNING)">Show WARNING</button> -->
   `,
   styleUrls: ['./toast.component.css'],
 })

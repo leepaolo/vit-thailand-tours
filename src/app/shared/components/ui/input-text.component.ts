@@ -20,7 +20,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       <!-- Input field with dynamic placeholder -->
       <input
         id="inputField"
-        type="text"
+        [type]="type || 'text'"
         [placeholder]="placeholder"
         [value]="value"
         [disabled]="isDisabled"
@@ -47,6 +47,7 @@ export class InputTextComponent implements ControlValueAccessor {
   @Input() text!: string;
   @Input() label!: string;
   @Input() placeholder!: string;
+  @Input() type: string = 'text';
 
   value: string = '';
   isDisabled: boolean = false;

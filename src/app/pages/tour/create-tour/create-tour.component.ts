@@ -5,6 +5,7 @@ import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { InputTextComponent } from '../../../shared/components/ui/input-text.component';
 import { TourQueryService } from '../../../core/services/tour-query.service';
@@ -19,7 +20,8 @@ import { ButtonComponent } from '../../../shared/components/ui/button.component'
 import { ActivatedRoute } from '@angular/router';
 import { ToastService } from '../../../shared/toast/toast.service';
 import { ToastType } from '../../../shared/toast/toastType.enum';
-import { ToastAlertService } from '../../../shared/toastAlert/toastAlert.service';
+import { CreateTourFormValidators } from '../../../shared/validators/form.validators';
+import { ValidateFormBorderDirective } from '../../../shared/directives/validate-form-border.directive';
 
 @Component({
   selector: 'app-create-tour',
@@ -31,6 +33,7 @@ import { ToastAlertService } from '../../../shared/toastAlert/toastAlert.service
     InputTextComponent,
     TextAreaComponent,
     InputSelectComponent,
+    ValidateFormBorderDirective,
   ],
   templateUrl: './create-tour.component.html',
   styleUrls: ['./create-tour.component.css'],
@@ -51,25 +54,26 @@ export class CreateTourComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private tourQuery: TourQueryService,
     private route: ActivatedRoute,
-    private toastService: ToastService,
-    private toastAlert: ToastAlertService,
-    private cdRef: ChangeDetectorRef
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
-    // Initialize the form
     this.tourForm = this.fb.group({
-      title: [''],
-      priceAdult: [null],
-      priceChild: [null],
-      location: [''],
-      mainDescription: [''],
-      tourType: [[]],
-      language: [[]],
-      startAt: [null],
-      finishAt: [null],
-      steps: this.fb.array([]), // Initialize FormArray for steps
+      title: ['', CreateTourFormValidators.titleValidator()], // Correctly invoked
+      priceAdult: [null, CreateTourFormValidators.priceValidator()], // Correctly invoked
+      priceChild: [null, CreateTourFormValidators.priceValidator()], // Correct invocation for priceChild
+      location: ['', CreateTourFormValidators.locationValidator()], // Correctly invoked
+      mainDescription: [
+        '',
+        CreateTourFormValidators.mainDescriptionValidator(),
+      ], // Correctly invoked
+      tourType: [[], Validators.required],
+      startAt: [null, Validators.required],
+      finishAt: [null, Validators.required],
+      steps: this.fb.array([]),
     });
+
+    // Check if validators are applied
 
     // Add a default step
     this.addStep();
@@ -108,7 +112,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
           location: tour.tourLocation,
           mainDescription: tour.tourMainDescription,
           tourType: tour.tourType,
-          language: tour.tourLanguage,
+          // language: tour.tourLanguage,
           startAt: tour.tourStartAt,
           finishAt: tour.tourFinishAt,
         });
@@ -157,7 +161,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         tourPriceChild: this.tourForm.get('priceChild')?.value,
         tourLocation: this.tourForm.get('location')?.value,
         tourType: this.tourForm.get('tourType')?.value,
-        tourLanguage: this.tourForm.get('language')?.value,
+        // tourLanguage: this.tourForm.get('language')?.value,
         tourStartAt: this.tourForm.get('startAt')?.value,
         tourFinishAt: this.tourForm.get('finishAt')?.value,
         steps: this.steps.value, // *** Retrieve the steps array
@@ -209,7 +213,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         tourPriceChild: this.tourForm.get('priceChild')?.value,
         tourLocation: this.tourForm.get('location')?.value,
         tourType: this.tourForm.get('tourType')?.value,
-        tourLanguage: this.tourForm.get('language')?.value,
+        // tourLanguage: this.tourForm.get('language')?.value,
         tourStartAt: this.tourForm.get('startAt')?.value,
         tourFinishAt: this.tourForm.get('finishAt')?.value,
         steps: this.steps.value,
@@ -230,7 +234,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         // *** Create new tour
         this.tourQuery.addTour(newTour).subscribe({
           next: (createdTour) => {
-            console.log('Tour added successfully:', createdTour);
+            console.log('Tour added successfully:', createdTour); // Log when tour is successfully created
             this.isTourCreated = true; // *** Indicate successful creation
           },
           error: (err) => {
@@ -240,7 +244,26 @@ export class CreateTourComponent implements OnInit, OnDestroy {
       }
     } else {
       console.log('Form is invalid');
+      this.logInvalidControls(); // Log invalid controls if the form is invalid
     }
+  }
+
+  // Method to log invalid controls
+  logInvalidControls(): void {
+    Object.keys(this.tourForm.controls).forEach((key) => {
+      const control = this.tourForm.get(key);
+      if (control && control.invalid) {
+        const errors = control.errors;
+        console.log(`Invalid field: ${key}`, errors);
+      }
+    });
+
+    // Check FormArray controls (steps)
+    this.steps.controls.forEach((step, index) => {
+      if (step.invalid) {
+        console.log(`Invalid Step ${index}`, step.errors);
+      }
+    });
   }
 
   onDeleteTour(): void {
