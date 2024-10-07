@@ -47,6 +47,32 @@
           "tourStepDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         }
       ]
+    },
+    {
+      "id": "53rnrdutm",
+      "tourActive": true,
+      "tourTitle": "Asoke by night",
+      "tourMainDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "tourPriceAdult": "22",
+      "tourPriceChild": "55",
+      "tourLocation": "Bangkok",
+      "tourType": "Half-day",
+      "tourStartAt": "14:00",
+      "tourFinishAt": "19:00",
+      "steps": [
+        {
+          "tourStepTitle": "step one",
+          "tourStepDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        },
+        {
+          "tourStepTitle": "Ste two",
+          "tourStepDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        },
+        {
+          "tourStepTitle": "Step three",
+          "tourStepDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        }
+      ]
     }
   ]
 }

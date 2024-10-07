@@ -34,6 +34,7 @@ import { ValidateFormBorderDirective } from '../../../shared/directives/validate
     TextAreaComponent,
     InputSelectComponent,
     ValidateFormBorderDirective,
+    ValidateFormBorderDirective,
   ],
   templateUrl: './create-tour.component.html',
   styleUrls: ['./create-tour.component.css'],
@@ -143,8 +144,11 @@ export class CreateTourComponent implements OnInit, OnDestroy {
   // Method to add a new step
   addStep(): void {
     const stepForm = this.fb.group({
-      tourStepTitle: [''],
-      tourStepDescription: [''],
+      tourStepTitle: ['', CreateTourFormValidators.tourStepTitleValidator()],
+      tourStepDescription: [
+        '',
+        CreateTourFormValidators.tourStepDescriptionValidator(),
+      ],
     });
     this.steps.push(stepForm);
   }

@@ -24,4 +24,13 @@ export class CreateTourFormValidators {
   static mainDescriptionValidator() {
     return [Validators.required, Validators.maxLength(500)];
   }
+  // Validator for tour step title
+  static tourStepTitleValidator() {
+    return [Validators.required, Validators.minLength(5)];
+  }
+
+  // Validator for tour step description
+  static tourStepDescriptionValidator() {
+    return [Validators.required, Validators.maxLength(500)];
+  }
 }

@@ -165,6 +165,12 @@
               formControlName="tourStepTitle"
               validateFormBorder
             ></app-input-text>
+            <div
+              *ngIf="step.get('tourStepTitle')?.errors?.['required'] && step.get('tourStepTitle')?.touched"
+              class="text-red-600 text-sm"
+            >
+              Step Title is required.
+            </div>
           </div>
 
           <div class="w-full">
@@ -173,6 +179,12 @@
               formControlName="tourStepDescription"
               validateFormBorder
             ></app-text-area>
+            <div
+              *ngIf="step.get('tourStepDescription')?.errors?.['required'] && step.get('tourStepDescription')?.touched"
+              class="text-red-600 text-sm"
+            >
+              Step Description is required.
+            </div>
           </div>
 
           <!-- Button to remove step -->
