@@ -2,22 +2,19 @@
   "tour-bd": [
     {
       "id": "tqc7rpsr1",
+      "tourActive": true,
       "tourTitle": "Historical City Tour Explore the city's rich history",
       "tourMainDescription": "Explore the city's rich history on this comprehensive tour.",
       "tourPriceAdult": 50,
       "tourPriceChild": 25,
-      "tourLocation": "Bangkok",
-      "tourType": [
-        "Halfday",
-        "Fullday"
-      ],
+      "tourLocation": "Koh Samui",
+      "tourType": "Full-day",
       "tourLanguage": [
         "English",
         "Italian"
       ],
-      "tourStartAt": "4:00 PM",
-      "tourFinishAt": "8:00 PM",
-      "tourActive": true,
+      "tourStartAt": "12:00",
+      "tourFinishAt": "11:00",
       "steps": [
         {
           "tourStepTitle": "Meet at the central square.",
@@ -26,29 +23,6 @@
         {
           "tourStepTitle": "Visit the ancient museum.",
           "tourStepDescription": "Explore the museum's historical artifacts."
-        }
-      ]
-    },
-    {
-      "id": "ez21bswhj",
-      "tourActive": true,
-      "tourTitle": "Praradice beach ",
-      "tourMainDescription": "Enjoy the beuaty and white sand.",
-      "tourPriceAdult": "99",
-      "tourPriceChild": "180",
-      "tourLocation": "Koh Samui",
-      "tourType": "Full-day",
-      "tourLanguage": [],
-      "tourStartAt": "12:00",
-      "tourFinishAt": "16:00",
-      "steps": [
-        {
-          "tourStepTitle": "Pick Malia hotel",
-          "tourStepDescription": "Get ready with freahc show"
-        },
-        {
-          "tourStepTitle": "step 1 hotel",
-          "tourStepDescription": "ciao buon viaggio"
         }
       ]
     }

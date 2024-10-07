@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -17,6 +17,9 @@ import { TYPE_TOUR } from '../../../core/constants/type.constants';
 import { LOCATION } from '../../../core/constants/location.costants';
 import { ButtonComponent } from '../../../shared/components/ui/button.component';
 import { ActivatedRoute } from '@angular/router';
+import { ToastService } from '../../../shared/toast/toast.service';
+import { ToastType } from '../../../shared/toast/toastType.enum';
+import { ToastAlertService } from '../../../shared/toastAlert/toastAlert.service';
 
 @Component({
   selector: 'app-create-tour',
@@ -47,7 +50,10 @@ export class CreateTourComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private tourQuery: TourQueryService,
-    private route: ActivatedRoute // *** Inject ActivatedRoute to access route params
+    private route: ActivatedRoute,
+    private toastService: ToastService,
+    private toastAlert: ToastAlertService,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -140,6 +146,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
   }
 
   updateTour(): void {
+    console.log('updateTour method is called'); //
     if (this.tourForm.valid && this.isEdit) {
       const updatedTour: ITour = {
         id: this.tourId, // *** Use the existing tourId
@@ -156,14 +163,28 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         steps: this.steps.value, // *** Retrieve the steps array
       };
 
-      // *** Call the update method in the service
+      // Call the update method in the service
       this.tourQuery.updateTour(updatedTour).subscribe({
         next: (tour) => {
           console.log('Tour updated successfully', tour);
-          this.isTourCreated = true; // *** Indicate the tour was updated successfully
+
+          // Add this log to ensure the toast is triggered
+          console.log('Triggering Toast Service after tour update');
+
+          // Set the toast message here
+          this.toastService.setToast({
+            type: ToastType.SUCCESS,
+            text: 'Tour Updated successfully!',
+          });
         },
         error: (err) => {
           console.error('Error updating tour', err);
+
+          // Trigger error toast
+          this.toastService.setToast({
+            type: ToastType.ERROR,
+            text: 'Error updating tour. Please try again.',
+          });
         },
       });
     } else {

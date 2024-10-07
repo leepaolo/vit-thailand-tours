@@ -130,7 +130,13 @@
 
   <!-- Submit button -->
   <div class="w-full mt-4">
-    <app-button [text]="isEdit ? 'Update Tour' : 'Create Tour'"></app-button>
+    <app-button
+      [text]="isEdit ? 'Update Tour' : 'Create Tour'"
+      type="button"
+      (buttonClick)="updateTour()"
+    >
+      <!-- Listen to buttonClick event and call updateTour -->
+    </app-button>
     <app-button
       [text]="'Delete tour'"
       [type]="'button'"
