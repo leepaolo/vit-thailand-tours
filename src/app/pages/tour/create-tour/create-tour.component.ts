@@ -17,7 +17,7 @@ import { TOUR_TIMES } from '../../../core/constants/tour-time.constants';
 import { TYPE_TOUR } from '../../../core/constants/type.constants';
 import { LOCATION } from '../../../core/constants/location.costants';
 import { ButtonComponent } from '../../../shared/components/ui/button.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from '../../../shared/toast/toast.service';
 import { ToastType } from '../../../shared/toast/toastType.enum';
 import { CreateTourFormValidators } from '../../../shared/validators/form.validators';
@@ -54,6 +54,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private tourQuery: TourQueryService,
+    private router: Router,
     private route: ActivatedRoute,
     private toastService: ToastService
   ) {}
@@ -178,6 +179,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
             type: ToastType.SUCCESS,
             text: 'Tour Updated successfully!',
           });
+          this.router.navigate(['/all-tours']); // Navigate to all-tours after update
         },
         error: (err) => {
           this.toastService.setToast({
@@ -242,6 +244,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
               type: ToastType.SUCCESS,
               text: 'Tour Created successfully!', // Add success toast for creation
             });
+            this.router.navigate(['/all-tours']); // Navigate to all-tours after update
           },
           error: (err) => {
             console.error('Error adding new tour:', err); // *** Handle error in tour creation
