@@ -174,21 +174,12 @@ export class CreateTourComponent implements OnInit, OnDestroy {
       // Call the update method in the service
       this.tourQuery.updateTour(updatedTour).subscribe({
         next: (tour) => {
-          console.log('Tour updated successfully', tour);
-
-          // Add this log to ensure the toast is triggered
-          console.log('Triggering Toast Service after tour update');
-
-          // Set the toast message here
           this.toastService.setToast({
             type: ToastType.SUCCESS,
             text: 'Tour Updated successfully!',
           });
         },
         error: (err) => {
-          console.error('Error updating tour', err);
-
-          // Trigger error toast
           this.toastService.setToast({
             type: ToastType.ERROR,
             text: 'Error updating tour. Please try again.',
@@ -209,7 +200,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (this.tourForm.valid) {
       const newTour: ITour = {
-        id: this.isEdit ? this.tourId : Math.random().toString(36).substr(2, 9), // *** Use the existing tour ID for edit
+        id: this.isEdit ? this.tourId : Math.random().toString(36).substr(2, 9), // Generate ID if creating new
         tourActive: true,
         tourTitle: this.tourForm.get('title')?.value,
         tourMainDescription: this.tourForm.get('mainDescription')?.value,
@@ -217,7 +208,6 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         tourPriceChild: this.tourForm.get('priceChild')?.value,
         tourLocation: this.tourForm.get('location')?.value,
         tourType: this.tourForm.get('tourType')?.value,
-        // tourLanguage: this.tourForm.get('language')?.value,
         tourStartAt: this.tourForm.get('startAt')?.value,
         tourFinishAt: this.tourForm.get('finishAt')?.value,
         steps: this.steps.value,
@@ -229,20 +219,36 @@ export class CreateTourComponent implements OnInit, OnDestroy {
           next: (updatedTour) => {
             console.log('Tour updated successfully:', updatedTour);
             this.isTourCreated = true; // *** Indicate successful update
+            this.toastService.setToast({
+              type: ToastType.SUCCESS,
+              text: 'Tour Updated successfully!', // Corrected the message here
+            });
           },
           error: (err) => {
             console.error('Error updating the tour:', err); // *** Handle error in tour update
+            this.toastService.setToast({
+              type: ToastType.ERROR,
+              text: 'Error updating tour. Please try again.', // Corrected the error message
+            });
           },
         });
       } else {
         // *** Create new tour
         this.tourQuery.addTour(newTour).subscribe({
           next: (createdTour) => {
-            console.log('Tour added successfully:', createdTour); // Log when tour is successfully created
+            console.log('Tour added successfully:', createdTour);
             this.isTourCreated = true; // *** Indicate successful creation
+            this.toastService.setToast({
+              type: ToastType.SUCCESS,
+              text: 'Tour Created successfully!', // Add success toast for creation
+            });
           },
           error: (err) => {
             console.error('Error adding new tour:', err); // *** Handle error in tour creation
+            this.toastService.setToast({
+              type: ToastType.ERROR,
+              text: 'Error creating tour. Please try again.', // Add error toast for creation failure
+            });
           },
         });
       }
