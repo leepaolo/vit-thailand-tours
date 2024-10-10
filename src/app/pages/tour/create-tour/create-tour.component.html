@@ -212,7 +212,7 @@
       (buttonClick)="isEdit ? updateTour() : onSubmit()"
     ></app-button>
     <app-button
-      [text]="'Delete tour'"
+      [text]="getDeleteButtonText()"
       [type]="'button'"
       (click)="onDeleteTour()"
     ></app-button>

@@ -50,6 +50,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
   isEdit = false;
   tourId!: string; // *** To store the tour ID
   tour!: ITour; // *** To store the full tour object
+  deleteStep: number = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -280,20 +281,50 @@ export class CreateTourComponent implements OnInit, OnDestroy {
   }
 
   onDeleteTour(): void {
-    if (this.tourId) {
-      // Make sure the tourId exists
+    if (this.deleteStep === 0) {
+      // First step: ask for confirmation
+      this.deleteStep = 1;
+    } else if (this.deleteStep === 1) {
+      // Second step: confirm deletion
+      this.deleteStep = 2;
+    } else if (this.deleteStep === 2 && this.tourId) {
+      // Third step: proceed with deletion
       this.tourQuery.deleteTour(this.tourId).subscribe({
         next: (deleted) => {
           console.log('Tour deleted successfully:', deleted);
-          // Optionally, redirect or refresh the list after deletion
+          this.resetDeleteStep();
+          this.toastService.setToast({
+            type: ToastType.SUCCESS,
+            text: 'Tour deleted successfully!',
+          });
+          this.router.navigate(['/all-tours']);
         },
         error: (err) => {
           console.error('Error deleting the tour:', err);
+          this.toastService.setToast({
+            type: ToastType.ERROR,
+            text: 'Error deleting the tour',
+          });
         },
       });
     } else {
       console.error('No tourId found for deletion');
     }
+  }
+
+  // Method to determine button text based on deleteStep
+  getDeleteButtonText(): string {
+    if (this.deleteStep === 0) {
+      return 'Delete Tour';
+    } else if (this.deleteStep === 1) {
+      return 'Are you sure?';
+    } else {
+      return 'Delete Tour Now';
+    }
+  }
+
+  resetDeleteStep(): void {
+    this.deleteStep = 0; // Reset the delete step back to the initial state
   }
 
   ngOnDestroy(): void {
