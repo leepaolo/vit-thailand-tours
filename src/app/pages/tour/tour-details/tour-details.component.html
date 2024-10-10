@@ -1,13 +1,29 @@
 <div *ngIf="tour$ | async as tour; else noTour">
-  <h2 class="text-2xl font-bold">{{ tour.tourTitle }}</h2>
-  <p>Start at: {{ tour.tourStartAt }}</p>
-  <p>Finish at: {{ tour.tourFinishAt }}</p>
-  <p>Tour type: {{ tour.tourType }}</p>
+  <!-- TOUR STICKY HEADER -->
+  <section class="sticky top-0 z-10">
+    <div class="flex justify-start align-center gap-2 p-2 bg-yellow-100">
+      <h2 class="text-2xl font-bold">{{ tour.tourTitle }}</h2>
+    </div>
 
-  <p>Location: {{ tour.tourLocation }}</p>
-  <p>Price for adults: ${{ tour.tourPriceAdult }}</p>
-  <p>Price for children: ${{ tour.tourPriceChild }}</p>
-  <p>{{ tour.tourMainDescription }}</p>
+    <div class="flex justify-start align-center gap-2 p-2 bg-yellow-100">
+      <p>Start at: {{ tour.tourStartAt }}</p>
+      <p>Finish at: {{ tour.tourFinishAt }}</p>
+    </div>
+    <div class="flex justify-start align-center gap-2 p-2 bg-yellow-100">
+      <p>Tour type: {{ tour.tourType }}</p>
+      <p>Location: {{ tour.tourLocation }}</p>
+    </div>
+
+    <div class="flex justify-start align-center gap-2 p-2 bg-yellow-100">
+      <p>Price for adults: ${{ tour.tourPriceAdult }}</p>
+      <p>Price for children: ${{ tour.tourPriceChild }}</p>
+    </div>
+  </section>
+
+  <div class="flex flex-col justify-start align-center gap-2 p-2 bg-red-100">
+    <p>Tour description</p>
+    <p>{{ tour.tourMainDescription }}</p>
+  </div>
 
   <!-- Render Steps -->
   <div *ngIf="tour.steps && tour.steps.length > 0">
