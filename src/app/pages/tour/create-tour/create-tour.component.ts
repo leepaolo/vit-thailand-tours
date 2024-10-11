@@ -221,7 +221,10 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         tourType: this.tourForm.get('tourType')?.value,
         tourStartAt: this.tourForm.get('startAt')?.value,
         tourFinishAt: this.tourForm.get('finishAt')?.value,
-        tourLanguage: this.tourForm.get('language')?.value,
+        tourLanguage: {
+          primaryLanguage: this.tourForm.get('primaryLanguage')?.value, // Save primary language
+          secondaryLanguage: this.tourForm.get('secondaryLanguage')?.value, // Save secondary language
+        },
         steps: this.steps.value,
       };
 
@@ -233,14 +236,14 @@ export class CreateTourComponent implements OnInit, OnDestroy {
             this.isTourCreated = true; // *** Indicate successful update
             this.toastService.setToast({
               type: ToastType.SUCCESS,
-              text: 'Tour Updated successfully!', // Corrected the message here
+              text: 'Tour Updated successfully!',
             });
           },
           error: (err) => {
-            console.error('Error updating the tour:', err); // *** Handle error in tour update
+            console.error('Error updating the tour:', err);
             this.toastService.setToast({
               type: ToastType.ERROR,
-              text: 'Error updating tour. Please try again.', // Corrected the error message
+              text: 'Error updating tour. Please try again.',
             });
           },
         });
@@ -252,15 +255,15 @@ export class CreateTourComponent implements OnInit, OnDestroy {
             this.isTourCreated = true; // *** Indicate successful creation
             this.toastService.setToast({
               type: ToastType.SUCCESS,
-              text: 'Tour Created successfully!', // Add success toast for creation
+              text: 'Tour Created successfully!',
             });
-            this.router.navigate(['/all-tours']); // Navigate to all-tours after update
+            this.router.navigate(['/all-tours']); // Navigate to all-tours after creation
           },
           error: (err) => {
-            console.error('Error adding new tour:', err); // *** Handle error in tour creation
+            console.error('Error adding new tour:', err);
             this.toastService.setToast({
               type: ToastType.ERROR,
-              text: 'Error creating tour. Please try again.', // Add error toast for creation failure
+              text: 'Error creating tour. Please try again.',
             });
           },
         });
