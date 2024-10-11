@@ -43,7 +43,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
   private destroy$ = new Subscription();
   tourForm!: FormGroup;
   tourTimes = TOUR_TIMES;
-  tourTypeDay = TYPE_TOUR;
+  tourType = TYPE_TOUR;
   locationArea = LOCATION;
   isTheTourCreated$: Observable<boolean> = of(false);
   isTourCreated = false;
@@ -70,7 +70,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         '',
         CreateTourFormValidators.mainDescriptionValidator(),
       ], // Correctly invoked
-      tourType: [[], Validators.required],
+      tourType: [null, Validators.required],
       startAt: [null, Validators.required],
       finishAt: [null, Validators.required],
       steps: this.fb.array([]),

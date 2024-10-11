@@ -88,15 +88,15 @@
         <div class="w-full">
           <app-input-select
             [placeholder]="'Select Type of Tour'"
-            [options]="tourTypeDay"
+            [options]="tourType"
             formControlName="tourType"
             validateFormBorder
           ></app-input-select>
           <div
-            *ngIf="tourForm.get('tourType')?.errors?.['required'] && tourForm.get('tourType')?.touched"
+            *ngIf="tourForm.get('location')?.errors?.['required'] && tourForm.get('tourType')?.touched"
             class="text-red-600 text-sm"
           >
-            Type of Tour is required.
+            Tour Type is required.
           </div>
         </div>
       </section>

@@ -1,38 +1,30 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-input-text',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule],
   template: `
-    <div>
-      <!-- If label is provided, display it -->
-      <label
-        *ngIf="label"
-        for="inputField"
-        class="block text-sm text-slate-700 dark:text-gray-300"
-      >
-        {{ label }}
-      </label>
-
-      <!-- Input field with dynamic placeholder -->
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label *ngIf="label">{{ label }}</mat-label>
       <input
-        id="inputField"
+        matInput
         [type]="type || 'text'"
         [placeholder]="placeholder"
         [value]="value"
         [disabled]="isDisabled"
         (input)="onInput($event)"
         (blur)="onBlur()"
-        class="block w-full px-5 py-2.5 mt-2 placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
       />
+    </mat-form-field>
 
-      <!-- Optionally display text below the input if provided -->
-      <div *ngIf="text" class="mt-2 text-sm text-slate-700">
-        {{ text }}
-      </div>
+    <!-- Optionally display text below the input if provided -->
+    <div *ngIf="text" class="mt-2 text-sm text-slate-700">
+      {{ text }}
     </div>
   `,
   providers: [

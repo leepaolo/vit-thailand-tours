@@ -4,11 +4,12 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TourQueryService } from '../../../core/services/tour-query.service';
 import { ITour } from '../../../core/models/tour.interface';
 import { map, Observable, switchMap } from 'rxjs';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-tour-details',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, MatDividerModule],
   templateUrl: './tour-details.component.html',
   styleUrls: ['./tour-details.component.css'], // Note: changed `styleUrl` to `styleUrls`
 })

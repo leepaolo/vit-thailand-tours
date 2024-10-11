@@ -6,18 +6,39 @@
     </div>
 
     <div class="flex justify-start align-center gap-2 p-2 bg-yellow-100">
-      <p>Start at: {{ tour.tourStartAt }}</p>
-      <p>Finish at: {{ tour.tourFinishAt }}</p>
+      <p>
+        <span class="text-md font-semibold">Start at: </span
+        >{{ tour.tourStartAt }}
+      </p>
+      <p>
+        <span class="text-md font-semibold">End at:</span>
+        {{ tour.tourFinishAt }}
+      </p>
     </div>
     <div class="flex justify-start align-center gap-2 p-2 bg-yellow-100">
-      <p>Tour type: {{ tour.tourType }}</p>
-      <p>Location: {{ tour.tourLocation }}</p>
+      <p>
+        <span class="text-md font-semibold">Tour type:</span>
+        {{ tour.tourType }}
+      </p>
+      <p>
+        <span class="text-md font-semibold">Location: </span
+        >{{ tour.tourLocation }}
+      </p>
     </div>
 
     <div class="flex justify-start align-center gap-2 p-2 bg-yellow-100">
-      <p>Price for adults: ${{ tour.tourPriceAdult }}</p>
-      <p>Price for children: ${{ tour.tourPriceChild }}</p>
+      <p>
+        <span class="text-md font-semibold">Price for adults:</span> ${{
+          tour.tourPriceAdult
+        }}
+      </p>
+      <p>
+        <span class="text-md font-semibold">Price for children:</span>${{
+          tour.tourPriceChild
+        }}
+      </p>
     </div>
+    <mat-divider></mat-divider>
   </section>
 
   <div class="flex flex-col justify-start align-center gap-2 p-2 bg-red-100">
@@ -31,8 +52,10 @@
     <ul>
       <li *ngFor="let step of tour.steps; let i = index" class="mt-2">
         <p>
-          <strong>Step {{ i + 1 }}:</strong> {{ step.tourStepTitle }}
+          <span class="text-md font-semibold">Step {{ i + 1 }}:</span>
+          {{ step.tourStepTitle }}
         </p>
+
         <p>{{ step.tourStepDescription }}</p>
       </li>
     </ul>
@@ -43,7 +66,7 @@
   </div>
 
   <!-- Go Back Link to Tour List -->
-  <a [routerLink]="['/all-tours']" class="text-blue-600 hover:underline mt-4"
+  <a [routerLink]="['/all-tours']" class="text-blue-600 hover:underline mt-8"
     >Go Back to All Tours</a
   >
 </div>

@@ -1,35 +1,31 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-text-area',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, FormsModule],
   template: `
-    <div class="w-full mt-4">
-      <!-- If label is provided, display it -->
-      <label
-        *ngIf="label"
-        class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-      >
-        {{ label }}
-      </label>
-
-      <!-- Textarea field with dynamic placeholder -->
+    <mat-form-field appearance="outline" class="w-full mt-4">
+      <mat-label *ngIf="label">{{ label }}</mat-label>
       <textarea
-        class="block w-full h-[150px] px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40 resize-none"
+        matInput
         [placeholder]="placeholder"
         [value]="value"
         [disabled]="isDisabled"
         (input)="onInput($event)"
         (blur)="onBlur()"
+        rows="6"
       ></textarea>
+    </mat-form-field>
 
-      <!-- Optionally display text below the textarea if provided -->
-      <div *ngIf="text" class="mt-2 text-sm text-slate-700">
-        {{ text }}
-      </div>
+    <!-- Optionally display text below the textarea if provided -->
+    <div *ngIf="text" class="mt-2 text-sm text-slate-700">
+      {{ text }}
     </div>
   `,
   providers: [

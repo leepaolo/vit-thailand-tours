@@ -1,14 +1,16 @@
-import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-button',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule],
   template: `
     <button
+      mat-raised-button
+      [color]="color || 'primary'"
       [attr.type]="type || 'submit'"
-      class="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"
       (click)="onClick()"
     >
       {{ text }}
@@ -17,7 +19,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ButtonComponent {
   @Input() text!: string;
-  @Input() type?: string; // Allow passing the button type (e.g., 'button', 'submit')
+  @Input() type?: string; // Allows passing the button type (e.g., 'button', 'submit')
+  @Input() color?: string; // Optional input for button color ('primary', 'accent', 'warn')
   @Output() buttonClick = new EventEmitter<void>();
 
   onClick() {
