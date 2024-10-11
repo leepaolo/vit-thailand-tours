@@ -69,6 +69,32 @@
           "tourStepDescription": "dbfbsdfbsdfbsdnfsajngngnrgonadgnadgndongadngadnfgongnadgnaldn.DFNsndfonSFèOnsèfonF.sfnsFNOèsnfèo."
         }
       ]
+    },
+    {
+      "id": "xqz7vfazs",
+      "tourActive": true,
+      "tourTitle": "BKK shopping mall explore",
+      "tourMainDescription": "asldfbasibfiasbfibsbg.DFBsdbsbGBèGO.DFNsnfpsnfosngonognognoqngongonognongongèn.",
+      "tourPriceAdult": "23",
+      "tourPriceChild": "45",
+      "tourLocation": "Bangkok",
+      "tourType": "Half-day",
+      "tourLanguage": {
+        "primaryLanguage": "Italian",
+        "secondaryLanguage": "None"
+      },
+      "tourStartAt": "08:00",
+      "tourFinishAt": "18:00",
+      "steps": [
+        {
+          "tourStepTitle": "Asoke pick up",
+          "tourStepDescription": "casldfbasibfiasbfibsbg.DFBsdbsbGBèGO.DFNsnfpsnfosngonognognoqngongonognongongèn."
+        },
+        {
+          "tourStepTitle": "MBK drop",
+          "tourStepDescription": "asldfbasibfiasbfibsbg.DFBsdbsbGBèGO.DFNsnfpsnfosngonognognoqngongonognongongèn."
+        }
+      ]
     }
   ]
 }

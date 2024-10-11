@@ -134,6 +134,38 @@
         </div>
       </section>
 
+      <!-- LANGUAGES -->
+      <section class="flex items-center gap-3">
+        <div class="w-full">
+          <app-input-select
+            [placeholder]="'Select primary language'"
+            [options]="language"
+            formControlName="primaryLanguage"
+            validateFormBorder
+          ></app-input-select>
+          <div
+            *ngIf="tourForm.get('primaryLanguage')?.errors?.['required'] && tourForm.get('primaryLanguage')?.touched"
+            class="text-red-600 text-sm"
+          >
+            Primary language is required.
+          </div>
+        </div>
+        <div class="w-full">
+          <app-input-select
+            [placeholder]="'Select secondary language'"
+            [options]="language"
+            formControlName="secondaryLanguage"
+            validateFormBorder
+          ></app-input-select>
+          <div
+            *ngIf="tourForm.get('secondaryLanguage')?.errors?.['required'] && tourForm.get('secondaryLanguage')?.touched"
+            class="text-red-600 text-sm"
+          >
+            Secondary language is required.
+          </div>
+        </div>
+      </section>
+
       <!-- MAIN DESCRIPTION SECTION -->
       <div class="w-full">
         <app-text-area

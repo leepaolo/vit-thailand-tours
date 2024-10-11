@@ -16,6 +16,7 @@ import { InputSelectComponent } from '../../../shared/components/ui/input-select
 import { TOUR_TIMES } from '../../../core/constants/tour-time.constants';
 import { TYPE_TOUR } from '../../../core/constants/type.constants';
 import { LOCATION } from '../../../core/constants/location.costants';
+import { LANGUAGE_TOUR } from '../../../core/constants/language.constatnt';
 import { ButtonComponent } from '../../../shared/components/ui/button.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from '../../../shared/toast/toast.service';
@@ -45,6 +46,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
   tourTimes = TOUR_TIMES;
   tourType = TYPE_TOUR;
   locationArea = LOCATION;
+  language = LANGUAGE_TOUR;
   isTheTourCreated$: Observable<boolean> = of(false);
   isTourCreated = false;
   isEdit = false;
@@ -73,6 +75,8 @@ export class CreateTourComponent implements OnInit, OnDestroy {
       tourType: [null, Validators.required],
       startAt: [null, Validators.required],
       finishAt: [null, Validators.required],
+      primaryLanguage: [null, Validators.required], // New form control
+      secondaryLanguage: [null, Validators.required], // New form control
       steps: this.fb.array([]),
     });
 
@@ -115,7 +119,8 @@ export class CreateTourComponent implements OnInit, OnDestroy {
           location: tour.tourLocation,
           mainDescription: tour.tourMainDescription,
           tourType: tour.tourType,
-          // language: tour.tourLanguage,
+          primaryLanguage: tour.tourLanguage?.primaryLanguage || null, // Patch primary language
+          secondaryLanguage: tour.tourLanguage?.secondaryLanguage || null, // Patch secondary language
           startAt: tour.tourStartAt,
           finishAt: tour.tourFinishAt,
         });
@@ -167,7 +172,10 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         tourPriceChild: this.tourForm.get('priceChild')?.value,
         tourLocation: this.tourForm.get('location')?.value,
         tourType: this.tourForm.get('tourType')?.value,
-        // tourLanguage: this.tourForm.get('language')?.value,
+        tourLanguage: {
+          primaryLanguage: this.tourForm.get('primaryLanguage')?.value, // Save primary language
+          secondaryLanguage: this.tourForm.get('secondaryLanguage')?.value, // Save secondary language
+        },
         tourStartAt: this.tourForm.get('startAt')?.value,
         tourFinishAt: this.tourForm.get('finishAt')?.value,
         steps: this.steps.value, // *** Retrieve the steps array
@@ -213,6 +221,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         tourType: this.tourForm.get('tourType')?.value,
         tourStartAt: this.tourForm.get('startAt')?.value,
         tourFinishAt: this.tourForm.get('finishAt')?.value,
+        tourLanguage: this.tourForm.get('language')?.value,
         steps: this.steps.value,
       };
 

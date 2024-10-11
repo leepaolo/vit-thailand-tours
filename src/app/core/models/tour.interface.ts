@@ -18,7 +18,10 @@ interface ITourMeta {
   tourActive: boolean;
   tourLocation: string;
   tourType: string[];
-  tourLanguage?: string[];
+  tourLanguage?: {
+    primaryLanguage: string;
+    secondaryLanguage: string;
+  };
   tourStartAt: string;
   tourFinishAt: string;
 }
