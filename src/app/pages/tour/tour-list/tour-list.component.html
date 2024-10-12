@@ -1,11 +1,22 @@
 <div *ngIf="tours$ | async as tours; else noTours">
-  <div *ngFor="let tour of tours" class="tour-item">
+  <div
+    *ngFor="let tour of tours"
+    class="tour-item p-4 border-b border-slate-200"
+  >
     <div class="p-2">
-      <p class="cursor-pointer" (click)="onManageTour(tour)">Manage tour</p>
-      <h3 class="text-xl font-bold">
+      <p
+        class="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed cursor-pointer text-slate-600 hover:text-slate-800"
+        (click)="onManageTour(tour)"
+      >
+        Manage tour
+      </p>
+      <h3
+        class="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-lg sm:text-xl md:text-2xl font-bold text-slate-800"
+      >
         <a
           [routerLink]="['/', createSlug(tour.tourTitle)]"
           routerLinkActive="router-link-active"
+          class="hover:underline"
           >{{ tour.tourTitle }}</a
         >
       </h3>
@@ -14,5 +25,7 @@
 </div>
 
 <ng-template #noTours>
-  <p>No tours available at the moment.</p>
+  <p class="text-slate-500 text-base sm:text-lg md:text-xl">
+    No tours available at the moment.
+  </p>
 </ng-template>

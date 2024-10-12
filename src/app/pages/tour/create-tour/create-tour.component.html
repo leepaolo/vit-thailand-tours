@@ -18,7 +18,11 @@
   <section class="grid grid-cols-1 md:grid-cols-2 p-4 gap-8">
     <!-- Grid item 1: Regular form fields -->
     <div>
-      <h2 class="text-xl">General specifics</h2>
+      <h2
+        class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-slate-800 mb-4"
+      >
+        General specifics
+      </h2>
 
       <!-- Title Field -->
       <div class="w-full">
@@ -53,7 +57,12 @@
 
     <!-- Grid item 2: Dynamic step section -->
     <div>
-      <h2 class="text-xl">Describe the itinerary</h2>
+      <h2
+        class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-slate-800 mb-4"
+      >
+        Tour details
+      </h2>
+
       <!-- PRICE SECTION -->
       <section class="flex items-center gap-3">
         <div class="w-full">
@@ -188,17 +197,18 @@
   </section>
 
   <section class="grid grid-cols-1 md:grid-cols-2 p-4 gap-8 w-full">
-    <!-- Grid item 1: Regular form fields -->
-
     <!-- Steps Section -->
     <section class="col-span-2">
-      <h2 class="text-xl">Describe the itinerary</h2>
+      <h2
+        class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-slate-800 mb-4"
+      >
+        Describe the itinerary
+      </h2>
 
-      <div formArrayName="steps" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div formArrayName="steps" class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div
           *ngFor="let step of steps.controls; let i = index"
           [formGroupName]="i"
-          class="step-block border border-gray-300 p-4 rounded-lg"
         >
           <div class="w-full">
             <app-input-text

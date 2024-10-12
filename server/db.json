@@ -74,7 +74,7 @@
       "id": "xqz7vfazs",
       "tourActive": true,
       "tourTitle": "BKK shopping mall explore",
-      "tourMainDescription": "asldfbasibfiasbfibsbg.DFBsdbsbGBèGO.DFNsnfpsnfosngonognognoqngongonognongongèn.",
+      "tourMainDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       "tourPriceAdult": "23",
       "tourPriceChild": "45",
       "tourLocation": "Bangkok",
@@ -88,37 +88,15 @@
       "steps": [
         {
           "tourStepTitle": "Asoke pick up oint",
-          "tourStepDescription": "casldfbasibfiasbfibsbg.DFBsdbsbGBèGO.DFNsnfpsnfosngonognognoqngongonognongongèn."
+          "tourStepDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
         },
         {
           "tourStepTitle": "MBK drop",
-          "tourStepDescription": "asldfbasibfiasbfibsbg.DFBsdbsbGBèGO.DFNsnfpsnfosngonognognoqngongonognongongèn."
-        }
-      ]
-    },
-    {
-      "id": "8pgf709dm",
-      "tourActive": true,
-      "tourTitle": "Koh smaui jeep saphari",
-      "tourMainDescription": "casldfbasibfiasbfibsbg.DFBsdbsbGBèGO.DFNsnfpsnfosngonognognoqngongonognongongèn.casldfbasibfiasbfibsbg.DFBsdbsbGBèGO.DFNsnfpsnfosngonognognoqngongonognongongèn.casldfbasibfiasbfibsbg.DFBsdbsbGBèGO.DFNsnfpsnfosngonognognoqngongonognongongèn.casldfbasibfiasbfibsbg.DFBsdbsbGBèGO.DFNsnfpsnfosngonognognoqngongonognongongèn.",
-      "tourPriceAdult": "34",
-      "tourPriceChild": "44",
-      "tourLocation": "Koh Samui",
-      "tourType": "Half-day",
-      "tourStartAt": "07:00",
-      "tourFinishAt": "18:00",
-      "steps": [
-        {
-          "tourStepTitle": "Ciao one",
-          "tourStepDescription": "casldfbasibfiasbfibsbg.DFBsdbsbGBèGO.DFNsnfpsnfosngonognognoqngongonognongongèn."
+          "tourStepDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
         },
         {
-          "tourStepTitle": "Ciao two",
-          "tourStepDescription": "casldfbasibfiasbfibsbg.DFBsdbsbGBèGO.DFNsnfpsnfosngonognognoqngongonognongongèn."
-        },
-        {
-          "tourStepTitle": "Ciao ciao ciao",
-          "tourStepDescription": "casldfbasibfiasbfibsbg.DFBsdbsbGBèGO.DFNsnfpsnfosngonognognoqngongonognongongèn.casldfbasibfiasbfibsbg.DFBsdbsbGBèGO.DFNsnfpsnfosngonognognoqngongonognongongèn."
+          "tourStepTitle": "Hotel drop",
+          "tourStepDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
         }
       ]
     },
@@ -129,10 +107,10 @@
       "tourMainDescription": "test tes testt testtest tes testt testtest tes testt testtest tes testt testtest tes testt test.test tes testt testtest tes testt testtest tes testt testtest tes testt test.test tes testt testtest tes testt test",
       "tourPriceAdult": "33",
       "tourPriceChild": "44",
-      "tourLocation": "Bangkok",
+      "tourLocation": "Phuket",
       "tourType": "Half-day",
       "tourLanguage": {
-        "primaryLanguage": "Italian",
+        "primaryLanguage": "English",
         "secondaryLanguage": "None"
       },
       "tourStartAt": "07:00",
