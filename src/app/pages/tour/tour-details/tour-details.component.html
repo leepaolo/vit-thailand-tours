@@ -1,69 +1,107 @@
 <div *ngIf="tour$ | async as tour; else noTour">
   <main class="max-w-7xl mx-auto p-4">
     <!-- TOUR STICKY HEADER -->
-    <section class="sticky top-0 z-10 border-b border-slate-200 shadow-md">
+    <section
+      class="sticky pt-4 pb-4 top-0 z-10 border-b border-slate-200 shadow-md bg-white"
+    >
       <!-- Title -->
-      <div
-        class="flex justify-start items-center gap-2 pl-4 pr-2 py-2 bg-yellow-100"
-      >
+      <div class="flex justify-start items-center gap-2 pl-4 pr-2 py-1">
         <h1 class="text-3xl sm:text-4xl font-bold text-slate-800">
           {{ tour.tourTitle }}
         </h1>
       </div>
 
-      <!-- Time Info - Keep Flex Direction -->
+      <!-- Price Info -->
       <div
-        class="flex flex-wrap justify-start items-center gap-4 pl-4 pr-2 py-2"
+        class="flex flex-wrap justify-start items-center gap-4 mb-4 pl-4 pr-2 py-2"
       >
-        <p class="text-md font-semibold text-slate-700">
-          Start at: <span class="text-slate-600">{{ tour.tourStartAt }}</span>
+        <p class="font-medium text-slate-600 text-xl sm:text-2xl">
+          Price adults:
+          <span class="font-bold text-slate-800"
+            >${{ tour.tourPriceAdult }}</span
+          >
         </p>
-        <p class="text-md font-semibold text-slate-700">
-          End at: <span class="text-slate-600">{{ tour.tourFinishAt }}</span>
+        <p class="font-medium text-slate-600 text-xl sm:text-2xl">
+          Price children:
+          <span class="font-bold text-slate-800"
+            >${{ tour.tourPriceChild }}</span
+          >
         </p>
       </div>
 
-      <!-- Type and Location Info - Keep Flex Direction -->
-      <div
-        class="flex flex-wrap justify-start items-center gap-4 pl-4 pr-2 py-2 bg-yellow-50"
-      >
-        <p class="text-md font-semibold text-slate-700">
-          Tour type: <span class="text-slate-600">{{ tour.tourType }}</span>
-        </p>
-        <p class="text-md font-semibold text-slate-700">
-          Location: <span class="text-slate-600">{{ tour.tourLocation }}</span>
-        </p>
-      </div>
+      <div class="flex flex-col md:flex-row justify-start">
+        <!-- Time Info -->
+        <div
+          class="flex flex-wrap justify-start items-center gap-4 pl-4 pr-2 py-1"
+        >
+          <p class="font-medium text-slate-600 text-base sm:text-lg">
+            Start at:
+            <span class="font-bold text-slate-800 text-lg sm:text-xl">{{
+              tour.tourStartAt
+            }}</span>
+          </p>
+          <p class="font-medium text-slate-600 text-base sm:text-lg">
+            End at:
+            <span class="font-bold text-slate-800 text-lg sm:text-xl">{{
+              tour.tourFinishAt
+            }}</span>
+          </p>
+        </div>
 
-      <!-- Price Info - Keep Flex Direction -->
-      <div
-        class="flex flex-wrap justify-start items-center gap-4 pl-4 pr-2 py-2 bg-yellow-50"
-      >
-        <p class="text-md font-semibold text-slate-700">
-          Price for adults:
-          <span class="text-slate-600">${{ tour.tourPriceAdult }}</span>
-        </p>
-        <p class="text-md font-semibold text-slate-700">
-          Price for children:
-          <span class="text-slate-600">${{ tour.tourPriceChild }}</span>
-        </p>
+        <!-- Type and Location Info -->
+        <div
+          class="flex flex-wrap justify-start items-center gap-4 pl-4 pr-2 py-1"
+        >
+          <p class="font-medium text-slate-600 text-base sm:text-lg">
+            Tour:
+            <span class="font-bold text-slate-800 text-lg sm:text-xl">{{
+              tour.tourType
+            }}</span>
+          </p>
+          <p class="font-medium text-slate-600 text-base sm:text-lg">
+            Location:
+            <span class="font-bold text-slate-800 text-lg sm:text-xl">{{
+              tour.tourLocation
+            }}</span>
+          </p>
+        </div>
       </div>
     </section>
 
-    <!-- Tour Description -->
-    <section class="p-4 bg-red-100">
-      <h2
-        class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-snug mb-4 text-slate-800"
-      >
-        Tour Description
-      </h2>
-      <p class="text-base sm:text-lg md:text-xl leading-relaxed text-slate-600">
-        {{ tour.tourMainDescription }}
-      </p>
-    </section>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+      <!-- Tour Description -->
+      <section class="p-4 bg-red-100">
+        <div>
+          <h2
+            class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-snug mb-4 text-slate-800"
+          >
+            Tour Description
+          </h2>
+
+          <p
+            class="text-base sm:text-lg md:text-xl leading-relaxed text-slate-600"
+          >
+            {{ tour.tourMainDescription }}
+          </p>
+        </div>
+      </section>
+
+      <!-- Image Placeholder -->
+      <section class="p-4 bg-red-100">
+        <img
+          src="https://via.placeholder.com/400x300"
+          alt="Placeholder image"
+          class="w-full h-auto object-cover"
+        />
+      </section>
+    </div>
 
     <!-- Render Steps -->
-    <section *ngIf="tour.steps && tour.steps.length > 0" class="p-4">
+
+    <section
+      *ngIf="tour.steps && tour.steps.length > 0"
+      class="p-4 bg-violet-100 mt-4"
+    >
       <h3
         class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-slate-800 leading-snug mb-4"
       >

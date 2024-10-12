@@ -53,24 +53,6 @@
       ]
     },
     {
-      "id": "nze4hts40",
-      "tourActive": true,
-      "tourTitle": "Pattays by night",
-      "tourMainDescription": "dbfbsdfbsdfbsdnfsajngngnrgonadgnadgndongadngadnfgongnadgnaldn.DFNsndfonSFèOnsèfonF.sfnsFNOèsnfèo.",
-      "tourPriceAdult": "34",
-      "tourPriceChild": "2",
-      "tourLocation": "Phuket",
-      "tourType": "Half-day",
-      "tourStartAt": "06:00",
-      "tourFinishAt": "07:00",
-      "steps": [
-        {
-          "tourStepTitle": "Dtart by walk",
-          "tourStepDescription": "dbfbsdfbsdfbsdnfsajngngnrgonadgnadgndongadngadnfgongnadgnaldn.DFNsndfonSFèOnsèfonF.sfnsFNOèsnfèo."
-        }
-      ]
-    },
-    {
       "id": "xqz7vfazs",
       "tourActive": true,
       "tourTitle": "BKK shopping mall explore",
@@ -117,7 +99,7 @@
       "tourFinishAt": "19:00",
       "steps": [
         {
-          "tourStepTitle": "Step one ciao",
+          "tourStepTitle": "Step one ",
           "tourStepDescription": "test tes testt testtest tes testt testtest tes testt testtest tes testt testtest tes testt test.test tes testt testtest tes testt testtest tes testt testtest tes testt test.test tes testt testtest tes testt test"
         }
       ]
