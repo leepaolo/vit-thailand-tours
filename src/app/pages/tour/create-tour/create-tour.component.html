@@ -53,6 +53,37 @@
           Main Description exceeds the maximum length.
         </div>
       </div>
+      <!-- IMAGE SECTION -->
+      <div class="w-full">
+        <!-- Image Drag and Drop Section -->
+        <div
+          class="image-drop-area"
+          (drop)="onDrop($event)"
+          (dragover)="onDragOver($event)"
+          class="drop-box flex flex-col items-center justify-center p-4 border-2 border-dashed rounded-md text-center cursor-pointer"
+          [ngClass]="{ 'border-green-500': image, 'border-gray-300': !image }"
+          (click)="fileInput.click()"
+        >
+          <p *ngIf="!image">Drag and drop an image here or click to select</p>
+          <p *ngIf="image">{{ image.name }}</p>
+
+          <!-- Image preview -->
+          <img
+            *ngIf="imagePreview"
+            [src]="imagePreview"
+            alt="Image Preview"
+            class="h-40 w-40 object-cover"
+          />
+
+          <input
+            type="file"
+            accept="image/*"
+            class="hidden"
+            #fileInput
+            (change)="onFileSelected($event)"
+          />
+        </div>
+      </div>
     </div>
 
     <!-- Grid item 2: Dynamic step section -->

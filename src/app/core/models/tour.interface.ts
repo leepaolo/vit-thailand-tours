@@ -7,6 +7,7 @@ interface ITourInfo {
   id: string;
   tourTitle: string;
   tourMainDescription: string;
+  tourMainImage: string;
 }
 
 interface ITourPricing {

@@ -23,6 +23,8 @@ import { ToastService } from '../../../shared/toast/toast.service';
 import { ToastType } from '../../../shared/toast/toastType.enum';
 import { CreateTourFormValidators } from '../../../shared/validators/form.validators';
 import { ValidateFormBorderDirective } from '../../../shared/directives/validate-form-border.directive';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-create-tour',
@@ -36,6 +38,7 @@ import { ValidateFormBorderDirective } from '../../../shared/directives/validate
     InputSelectComponent,
     ValidateFormBorderDirective,
     ValidateFormBorderDirective,
+    DragDropModule,
   ],
   templateUrl: './create-tour.component.html',
   styleUrls: ['./create-tour.component.css'],
@@ -53,13 +56,16 @@ export class CreateTourComponent implements OnInit, OnDestroy {
   tourId!: string; // *** To store the tour ID
   tour!: ITour; // *** To store the full tour object
   deleteStep: number = 0;
+  image: File | null = null;
+  imagePreview: SafeUrl | null = null;
 
   constructor(
     private fb: FormBuilder,
     private tourQuery: TourQueryService,
     private router: Router,
     private route: ActivatedRoute,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -71,7 +77,8 @@ export class CreateTourComponent implements OnInit, OnDestroy {
       mainDescription: [
         '',
         CreateTourFormValidators.mainDescriptionValidator(),
-      ], // Correctly invoked
+      ],
+      mainImage: [null, Validators.required],
       tourType: [null, Validators.required],
       startAt: [null, Validators.required],
       finishAt: [null, Validators.required],
@@ -118,12 +125,20 @@ export class CreateTourComponent implements OnInit, OnDestroy {
           priceChild: tour.tourPriceChild,
           location: tour.tourLocation,
           mainDescription: tour.tourMainDescription,
+          tourImage: tour.tourMainImage,
           tourType: tour.tourType,
           primaryLanguage: tour.tourLanguage?.primaryLanguage || null, // Patch primary language
           secondaryLanguage: tour.tourLanguage?.secondaryLanguage || null, // Patch secondary language
           startAt: tour.tourStartAt,
           finishAt: tour.tourFinishAt,
         });
+
+        // Display the existing image in the preview
+        if (tour.tourMainImage) {
+          this.imagePreview = this.sanitizer.bypassSecurityTrustUrl(
+            tour.tourMainImage
+          );
+        }
 
         // *** Clear existing steps and add the steps from the retrieved tour
         this.steps.clear();
@@ -141,6 +156,58 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         console.error('Error retrieving tour by ID', err);
       },
     });
+  }
+
+  // EDIT IMAGE UPLOAD SNIPPET READY FOR THE SERVER - SEE AT T HE BOTTOM OF THE PAGE
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input?.files && input.files.length > 0) {
+      this.image = input.files[0];
+
+      if (this.image) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const base64String = reader.result as string;
+          this.imagePreview =
+            this.sanitizer.bypassSecurityTrustUrl(base64String);
+
+          // Set the Base64 string in the form control
+          this.tourForm.patchValue({
+            mainImage: base64String, // Store Base64 in mainImage control
+          });
+        };
+        reader.readAsDataURL(this.image);
+      }
+    }
+  }
+
+  onDrop(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (event.dataTransfer && event.dataTransfer.files.length > 0) {
+      this.image = event.dataTransfer.files[0];
+
+      if (this.image) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const base64String = reader.result as string;
+          this.imagePreview =
+            this.sanitizer.bypassSecurityTrustUrl(base64String);
+
+          // Set the Base64 string in the form control
+          this.tourForm.patchValue({
+            mainImage: base64String, // Store Base64 in mainImage control
+          });
+        };
+        reader.readAsDataURL(this.image);
+      }
+    }
+  }
+
+  onDragOver(event: any): void {
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   // Getter to access the steps FormArray
@@ -168,6 +235,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         tourActive: true,
         tourTitle: this.tourForm.get('title')?.value,
         tourMainDescription: this.tourForm.get('mainDescription')?.value,
+        tourMainImage: this.tourForm.get('mainImage')?.value,
         tourPriceAdult: this.tourForm.get('priceAdult')?.value,
         tourPriceChild: this.tourForm.get('priceChild')?.value,
         tourLocation: this.tourForm.get('location')?.value,
@@ -215,6 +283,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         tourActive: true,
         tourTitle: this.tourForm.get('title')?.value,
         tourMainDescription: this.tourForm.get('mainDescription')?.value,
+        tourMainImage: this.tourForm.get('mainImage')?.value,
         tourPriceAdult: this.tourForm.get('priceAdult')?.value,
         tourPriceChild: this.tourForm.get('priceChild')?.value,
         tourLocation: this.tourForm.get('location')?.value,
@@ -345,3 +414,30 @@ export class CreateTourComponent implements OnInit, OnDestroy {
     }
   }
 }
+
+// IMAGE UPLOAD SNIPPET READY FOR THE SERVER
+
+// onFileSelected(event: Event): void {
+//   const input = event.target as HTMLInputElement;
+//   if (input?.files && input.files.length > 0) {
+//     this.image = input.files[0];
+//     this.imagePreview = this.sanitizer.bypassSecurityTrustUrl(
+//       URL.createObjectURL(this.image)
+//     );
+//   }
+// }
+
+// onDrop(event: any): void {
+//   event.preventDefault();
+//   event.stopPropagation();
+
+//   if (event.dataTransfer && event.dataTransfer.files.length > 0) {
+//     this.image = event.dataTransfer.files[0];
+
+//     if (this.image) {
+//       this.imagePreview = this.sanitizer.bypassSecurityTrustUrl(
+//         URL.createObjectURL(this.image)
+//       );
+//     }
+//   }
+// }
