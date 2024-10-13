@@ -86,13 +86,16 @@
         </div>
       </section>
 
-      <!-- Image Placeholder -->
+      <!-- MAIN IMAGE SECTION -->
+
       <section class="p-4 bg-red-100">
         <img
-          src="https://via.placeholder.com/400x300"
-          alt="Placeholder image"
+          *ngIf="tour.tourMainImage"
+          [src]="tour.tourMainImage"
+          alt="Tour image"
           class="w-full h-auto object-cover"
         />
+        <p *ngIf="!tour.tourMainImage">No image available for this tour</p>
       </section>
     </div>
 

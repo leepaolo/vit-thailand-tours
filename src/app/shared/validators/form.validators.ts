@@ -6,7 +6,7 @@ export class CreateTourFormValidators {
     return [
       Validators.required,
       Validators.minLength(10),
-      Validators.maxLength(50),
+      Validators.maxLength(100),
     ];
   }
 

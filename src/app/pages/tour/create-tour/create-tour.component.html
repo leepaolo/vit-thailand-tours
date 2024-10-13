@@ -64,6 +64,7 @@
           [ngClass]="{ 'border-green-500': image, 'border-gray-300': !image }"
           (click)="fileInput.click()"
         >
+          <mat-icon>cloud_upload</mat-icon>
           <p *ngIf="!image">Drag and drop an image here or click to select</p>
           <p *ngIf="image">{{ image.name }}</p>
 

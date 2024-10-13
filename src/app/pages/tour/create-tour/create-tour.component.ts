@@ -25,6 +25,7 @@ import { CreateTourFormValidators } from '../../../shared/validators/form.valida
 import { ValidateFormBorderDirective } from '../../../shared/directives/validate-form-border.directive';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-create-tour',
@@ -39,23 +40,24 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
     ValidateFormBorderDirective,
     ValidateFormBorderDirective,
     DragDropModule,
+    MatIconModule,
   ],
   templateUrl: './create-tour.component.html',
   styleUrls: ['./create-tour.component.css'],
 })
 export class CreateTourComponent implements OnInit, OnDestroy {
   private destroy$ = new Subscription();
+  isTheTourCreated$: Observable<boolean> = of(false);
   tourForm!: FormGroup;
   tourTimes = TOUR_TIMES;
   tourType = TYPE_TOUR;
   locationArea = LOCATION;
   language = LANGUAGE_TOUR;
-  isTheTourCreated$: Observable<boolean> = of(false);
   isTourCreated = false;
   isEdit = false;
-  tourId!: string; // *** To store the tour ID
-  tour!: ITour; // *** To store the full tour object
-  deleteStep: number = 0;
+  tourId!: string;
+  tour!: ITour;
+  deleteStep: number = 1;
   image: File | null = null;
   imagePreview: SafeUrl | null = null;
 
@@ -89,8 +91,11 @@ export class CreateTourComponent implements OnInit, OnDestroy {
 
     // Check if validators are applied
 
-    // Add a default step
-    this.addStep();
+    // Add default steps (2 steps in this case)
+    const defaultStepCount = 2;
+    for (let i = 0; i < defaultStepCount; i++) {
+      this.addStep();
+    }
 
     // *** Retrieve the tour ID from the route
     this.route.paramMap.subscribe((params) => {
@@ -272,7 +277,13 @@ export class CreateTourComponent implements OnInit, OnDestroy {
 
   // Method to remove a step by index
   removeStep(index: number): void {
-    this.steps.removeAt(index);
+    const defaultStepCount = 2; // Number of default steps that should not be deleted
+
+    if (index >= defaultStepCount) {
+      this.steps.removeAt(index);
+    } else {
+      console.log(`Step ${index + 1} is a default step and cannot be deleted.`);
+    }
   }
 
   // Handle form submission
