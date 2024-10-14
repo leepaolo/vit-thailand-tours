@@ -55,7 +55,6 @@
       </div>
       <!-- IMAGE SECTION -->
       <div class="w-full">
-        <!-- Image Drag and Drop Section -->
         <div
           class="image-drop-area"
           (drop)="onDrop($event)"
@@ -68,7 +67,6 @@
           <p *ngIf="!image">Drag and drop an image here or click to select</p>
           <p *ngIf="image">{{ image.name }}</p>
 
-          <!-- Image preview -->
           <img
             *ngIf="imagePreview"
             [src]="imagePreview"

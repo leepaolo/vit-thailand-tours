@@ -27,6 +27,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 import { TourInfoComponent } from './form/tour-info.component';
+import { TourImageUploadComponent } from './form/tour-image-upload.component';
 
 @Component({
   selector: 'app-create-tour',
@@ -43,6 +44,7 @@ import { TourInfoComponent } from './form/tour-info.component';
     DragDropModule,
     MatIconModule,
     TourInfoComponent,
+    TourImageUploadComponent,
   ],
   templateUrl: './create-tour.component.html',
   styleUrls: ['./create-tour.component.css'],
