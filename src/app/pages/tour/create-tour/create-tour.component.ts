@@ -72,10 +72,10 @@ export class CreateTourComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.tourForm = this.fb.group({
-      title: ['', CreateTourFormValidators.titleValidator()], // Correctly invoked
-      priceAdult: [null, CreateTourFormValidators.priceValidator()], // Correctly invoked
-      priceChild: [null, CreateTourFormValidators.priceValidator()], // Correct invocation for priceChild
-      location: ['', CreateTourFormValidators.locationValidator()], // Correctly invoked
+      title: ['', CreateTourFormValidators.titleValidator()],
+      priceAdult: [null, CreateTourFormValidators.priceValidator()],
+      priceChild: [null, CreateTourFormValidators.priceValidator()],
+      location: ['', CreateTourFormValidators.locationValidator()],
       mainDescription: [
         '',
         CreateTourFormValidators.mainDescriptionValidator(),
@@ -84,30 +84,25 @@ export class CreateTourComponent implements OnInit, OnDestroy {
       tourType: [null, Validators.required],
       startAt: [null, Validators.required],
       finishAt: [null, Validators.required],
-      primaryLanguage: [null, Validators.required], // New form control
-      secondaryLanguage: [null, Validators.required], // New form control
+      primaryLanguage: [null, Validators.required],
+      secondaryLanguage: [null, Validators.required],
       steps: this.fb.array([]),
     });
 
-    // Check if validators are applied
-
-    // Add default steps (2 steps in this case)
     const defaultStepCount = 2;
     for (let i = 0; i < defaultStepCount; i++) {
       this.addStep();
     }
 
-    // *** Retrieve the tour ID from the route
     this.route.paramMap.subscribe((params) => {
       const tourId = params.get('id');
       if (tourId) {
         this.tourId = tourId;
-        this.isEdit = true; // *** Set to edit mode
-        this.patchFormFields(tourId); // *** Call function to populate the form
+        this.isEdit = true;
+        this.patchFormFields(tourId);
       }
     });
 
-    // *** Subscribe to the observable for tour creation status
     this.isTheTourCreated$ = this.tourQuery.isTourCreatedObservable();
     this.isTheTourCreated$.subscribe({
       next: (created) => {
@@ -119,33 +114,29 @@ export class CreateTourComponent implements OnInit, OnDestroy {
     });
   }
 
-  // *** Function to populate the form with tour data
   patchFormFields(tourId: string): void {
     this.tourQuery.getTourById(tourId).subscribe({
       next: (tour: ITour) => {
-        // *** Patch the form with the tour data
         this.tourForm.patchValue({
           title: tour.tourTitle,
           priceAdult: tour.tourPriceAdult,
           priceChild: tour.tourPriceChild,
           location: tour.tourLocation,
           mainDescription: tour.tourMainDescription,
-          tourImage: tour.tourMainImage,
+          mainImage: tour.tourMainImage, // Ensure this is set
           tourType: tour.tourType,
-          primaryLanguage: tour.tourLanguage?.primaryLanguage || null, // Patch primary language
-          secondaryLanguage: tour.tourLanguage?.secondaryLanguage || null, // Patch secondary language
+          primaryLanguage: tour.tourLanguage?.primaryLanguage || null,
+          secondaryLanguage: tour.tourLanguage?.secondaryLanguage || null,
           startAt: tour.tourStartAt,
           finishAt: tour.tourFinishAt,
         });
 
-        // Display the existing image in the preview
         if (tour.tourMainImage) {
           this.imagePreview = this.sanitizer.bypassSecurityTrustUrl(
             tour.tourMainImage
           );
         }
 
-        // *** Clear existing steps and add the steps from the retrieved tour
         this.steps.clear();
         if (tour.steps && tour.steps.length > 0) {
           tour.steps.forEach((step) => {
@@ -163,7 +154,6 @@ export class CreateTourComponent implements OnInit, OnDestroy {
     });
   }
 
-  // EDIT IMAGE UPLOAD SNIPPET READY FOR THE SERVER - SEE AT T HE BOTTOM OF THE PAGE
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input?.files && input.files.length > 0) {
@@ -215,12 +205,10 @@ export class CreateTourComponent implements OnInit, OnDestroy {
     event.stopPropagation();
   }
 
-  // Getter to access the steps FormArray
   get steps(): FormArray {
     return this.tourForm.get('steps') as FormArray;
   }
 
-  // Method to add a new step
   addStep(): void {
     const stepForm = this.fb.group({
       tourStepTitle: ['', CreateTourFormValidators.tourStepTitleValidator()],
@@ -233,10 +221,10 @@ export class CreateTourComponent implements OnInit, OnDestroy {
   }
 
   updateTour(): void {
-    console.log('updateTour method is called'); //
+    console.log('updateTour method is called');
     if (this.tourForm.valid && this.isEdit) {
       const updatedTour: ITour = {
-        id: this.tourId, // *** Use the existing tourId
+        id: this.tourId,
         tourActive: true,
         tourTitle: this.tourForm.get('title')?.value,
         tourMainDescription: this.tourForm.get('mainDescription')?.value,
@@ -246,22 +234,21 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         tourLocation: this.tourForm.get('location')?.value,
         tourType: this.tourForm.get('tourType')?.value,
         tourLanguage: {
-          primaryLanguage: this.tourForm.get('primaryLanguage')?.value, // Save primary language
-          secondaryLanguage: this.tourForm.get('secondaryLanguage')?.value, // Save secondary language
+          primaryLanguage: this.tourForm.get('primaryLanguage')?.value,
+          secondaryLanguage: this.tourForm.get('secondaryLanguage')?.value,
         },
         tourStartAt: this.tourForm.get('startAt')?.value,
         tourFinishAt: this.tourForm.get('finishAt')?.value,
-        steps: this.steps.value, // *** Retrieve the steps array
+        steps: this.steps.value,
       };
 
-      // Call the update method in the service
       this.tourQuery.updateTour(updatedTour).subscribe({
         next: (tour) => {
           this.toastService.setToast({
             type: ToastType.SUCCESS,
             text: 'Tour Updated successfully!',
           });
-          this.router.navigate(['/all-tours']); // Navigate to all-tours after update
+          this.router.navigate(['/all-tours']);
         },
         error: (err) => {
           this.toastService.setToast({
@@ -272,25 +259,19 @@ export class CreateTourComponent implements OnInit, OnDestroy {
       });
     } else {
       console.log('Form is invalid or not in edit mode');
+      this.logInvalidControls();
     }
   }
 
   // Method to remove a step by index
   removeStep(index: number): void {
-    const defaultStepCount = 2; // Number of default steps that should not be deleted
+    const defaultStepCount = 2;
+  } // Number of default steps that should not be deleted
 
-    if (index >= defaultStepCount) {
-      this.steps.removeAt(index);
-    } else {
-      console.log(`Step ${index + 1} is a default step and cannot be deleted.`);
-    }
-  }
-
-  // Handle form submission
   onSubmit(): void {
     if (this.tourForm.valid) {
       const newTour: ITour = {
-        id: this.isEdit ? this.tourId : Math.random().toString(36).substr(2, 9), // Generate ID if creating new
+        id: this.isEdit ? this.tourId : Math.random().toString(36).substr(2, 9),
         tourActive: true,
         tourTitle: this.tourForm.get('title')?.value,
         tourMainDescription: this.tourForm.get('mainDescription')?.value,
@@ -302,42 +283,24 @@ export class CreateTourComponent implements OnInit, OnDestroy {
         tourStartAt: this.tourForm.get('startAt')?.value,
         tourFinishAt: this.tourForm.get('finishAt')?.value,
         tourLanguage: {
-          primaryLanguage: this.tourForm.get('primaryLanguage')?.value, // Save primary language
-          secondaryLanguage: this.tourForm.get('secondaryLanguage')?.value, // Save secondary language
+          primaryLanguage: this.tourForm.get('primaryLanguage')?.value,
+          secondaryLanguage: this.tourForm.get('secondaryLanguage')?.value,
         },
         steps: this.steps.value,
       };
 
       if (this.isEdit) {
-        // *** Update existing tour
-        this.tourQuery.updateTour(newTour).subscribe({
-          next: (updatedTour) => {
-            console.log('Tour updated successfully:', updatedTour);
-            this.isTourCreated = true; // *** Indicate successful update
-            this.toastService.setToast({
-              type: ToastType.SUCCESS,
-              text: 'Tour Updated successfully!',
-            });
-          },
-          error: (err) => {
-            console.error('Error updating the tour:', err);
-            this.toastService.setToast({
-              type: ToastType.ERROR,
-              text: 'Error updating tour. Please try again.',
-            });
-          },
-        });
+        this.updateTour();
       } else {
-        // *** Create new tour
         this.tourQuery.addTour(newTour).subscribe({
           next: (createdTour) => {
             console.log('Tour added successfully:', createdTour);
-            this.isTourCreated = true; // *** Indicate successful creation
+            this.isTourCreated = true;
             this.toastService.setToast({
               type: ToastType.SUCCESS,
               text: 'Tour Created successfully!',
             });
-            this.router.navigate(['/all-tours']); // Navigate to all-tours after creation
+            this.router.navigate(['/all-tours']);
           },
           error: (err) => {
             console.error('Error adding new tour:', err);
@@ -350,21 +313,18 @@ export class CreateTourComponent implements OnInit, OnDestroy {
       }
     } else {
       console.log('Form is invalid');
-      this.logInvalidControls(); // Log invalid controls if the form is invalid
+      this.logInvalidControls();
     }
   }
 
-  // Method to log invalid controls
   logInvalidControls(): void {
     Object.keys(this.tourForm.controls).forEach((key) => {
       const control = this.tourForm.get(key);
       if (control && control.invalid) {
-        const errors = control.errors;
-        console.log(`Invalid field: ${key}`, errors);
+        console.log(`Invalid field: ${key}`, control.errors);
       }
     });
 
-    // Check FormArray controls (steps)
     this.steps.controls.forEach((step, index) => {
       if (step.invalid) {
         console.log(`Invalid Step ${index}`, step.errors);
@@ -374,13 +334,10 @@ export class CreateTourComponent implements OnInit, OnDestroy {
 
   onDeleteTour(): void {
     if (this.deleteStep === 0) {
-      // First step: ask for confirmation
       this.deleteStep = 1;
     } else if (this.deleteStep === 1) {
-      // Second step: confirm deletion
       this.deleteStep = 2;
     } else if (this.deleteStep === 2 && this.tourId) {
-      // Third step: proceed with deletion
       this.tourQuery.deleteTour(this.tourId).subscribe({
         next: (deleted) => {
           console.log('Tour deleted successfully:', deleted);
@@ -404,7 +361,6 @@ export class CreateTourComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Method to determine button text based on deleteStep
   getDeleteButtonText(): string {
     if (this.deleteStep === 0) {
       return 'Delete Tour';
@@ -416,7 +372,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
   }
 
   resetDeleteStep(): void {
-    this.deleteStep = 0; // Reset the delete step back to the initial state
+    this.deleteStep = 0;
   }
 
   ngOnDestroy(): void {
@@ -425,30 +381,3 @@ export class CreateTourComponent implements OnInit, OnDestroy {
     }
   }
 }
-
-// IMAGE UPLOAD SNIPPET READY FOR THE SERVER
-
-// onFileSelected(event: Event): void {
-//   const input = event.target as HTMLInputElement;
-//   if (input?.files && input.files.length > 0) {
-//     this.image = input.files[0];
-//     this.imagePreview = this.sanitizer.bypassSecurityTrustUrl(
-//       URL.createObjectURL(this.image)
-//     );
-//   }
-// }
-
-// onDrop(event: any): void {
-//   event.preventDefault();
-//   event.stopPropagation();
-
-//   if (event.dataTransfer && event.dataTransfer.files.length > 0) {
-//     this.image = event.dataTransfer.files[0];
-
-//     if (this.image) {
-//       this.imagePreview = this.sanitizer.bypassSecurityTrustUrl(
-//         URL.createObjectURL(this.image)
-//       );
-//     }
-//   }
-// }
