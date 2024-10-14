@@ -26,6 +26,7 @@ import { ValidateFormBorderDirective } from '../../../shared/directives/validate
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
+import { TourInfoComponent } from './form/tour-info.component';
 
 @Component({
   selector: 'app-create-tour',
@@ -41,6 +42,7 @@ import { MatIconModule } from '@angular/material/icon';
     ValidateFormBorderDirective,
     DragDropModule,
     MatIconModule,
+    TourInfoComponent,
   ],
   templateUrl: './create-tour.component.html',
   styleUrls: ['./create-tour.component.css'],
