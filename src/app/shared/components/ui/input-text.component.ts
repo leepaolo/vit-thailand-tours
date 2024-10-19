@@ -36,7 +36,7 @@ import { CommonModule } from '@angular/common';
   ],
 })
 export class InputTextComponent implements ControlValueAccessor {
-  @Input() text!: string;
+  @Input() text!: string | number;
   @Input() label!: string;
   @Input() placeholder!: string;
   @Input() type: string = 'text';
@@ -48,8 +48,12 @@ export class InputTextComponent implements ControlValueAccessor {
   private onTouched = () => {};
 
   // Write a new value to the element
-  writeValue(value: string): void {
-    this.value = value || '';
+  writeValue(value: string | number): void {
+    if (value !== null && value !== undefined) {
+      this.value = value.toString();
+    } else {
+      this.value = '';
+    }
   }
 
   // Register the function to call when the control value changes
@@ -70,7 +74,16 @@ export class InputTextComponent implements ControlValueAccessor {
   // Handle input events
   onInput(event: Event): void {
     const target = event.target as HTMLInputElement;
-    const value = target.value;
+    let value: any = target.value;
+
+    // Parse value to a number if the input type is 'number'
+    if (this.type === 'number') {
+      value = parseFloat(value);
+      if (isNaN(value)) {
+        value = null; // Handle invalid number input
+      }
+    }
+
     this.value = value;
     this.onChange(value);
   }
