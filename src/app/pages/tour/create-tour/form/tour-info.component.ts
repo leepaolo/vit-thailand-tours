@@ -52,5 +52,5 @@ import { ValidateFormBorderDirective } from '../../../../shared/directives/valid
   styles: [],
 })
 export class TourInfoComponent {
-  @Input() tourInfoForm!: FormGroup; // Expect a FormGroup to be passed in
+  @Input() tourInfoForm!: FormGroup;
 }

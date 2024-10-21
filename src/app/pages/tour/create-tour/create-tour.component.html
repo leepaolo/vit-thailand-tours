@@ -24,35 +24,7 @@
         General specifics
       </h2>
 
-      <!-- Title Field -->
-      <div class="w-full">
-        <app-input-text
-          [placeholder]="'Title of the tour'"
-          formControlName="title"
-          validateFormBorder
-        ></app-input-text>
-        <div
-          *ngIf="tourForm.get('title')?.errors?.['required'] && tourForm.get('title')?.touched"
-          class="text-red-600 text-sm"
-        >
-          Title is required.
-        </div>
-      </div>
-
-      <!-- MAIN DESCRIPTION SECTION -->
-      <div class="w-full">
-        <app-text-area
-          [placeholder]="'Description of the tour'"
-          formControlName="mainDescription"
-          validateFormBorder
-        ></app-text-area>
-        <div
-          *ngIf="tourForm.get('mainDescription')?.errors?.['required'] && tourForm.get('mainDescription')?.touched"
-          class="text-red-600 text-sm"
-        >
-          Main Description exceeds the maximum length.
-        </div>
-      </div>
+      <app-tour-info [tourInfoForm]="tourForm"></app-tour-info>
       <!-- IMAGE SECTION -->
       <div class="w-full">
         <div
@@ -93,136 +65,13 @@
         Tour details
       </h2>
 
-      <!-- PRICE SECTION -->
-      <section class="flex items-center gap-3">
-        <div class="w-full">
-          <app-input-text
-            [placeholder]="'Price for Adults'"
-            formControlName="priceAdult"
-            type="number"
-            validateFormBorder
-          ></app-input-text>
-          <div
-            *ngIf="tourForm.get('priceAdult')?.errors?.['required'] && tourForm.get('priceAdult')?.touched"
-            class="text-red-600 text-sm"
-          >
-            Price for Adults is required.
-          </div>
-        </div>
-
-        <div class="w-full">
-          <app-input-text
-            [placeholder]="'Price for Children'"
-            formControlName="priceChild"
-            type="number"
-            validateFormBorder
-          ></app-input-text>
-          <div
-            *ngIf="tourForm.get('priceChild')?.errors?.['required'] && tourForm.get('priceChild')?.touched"
-            class="text-red-600 text-sm"
-          >
-            Price for Children is required.
-          </div>
-        </div>
-      </section>
-
-      <!-- LOCATION AND TYPE SECTION -->
-      <section class="flex items-center gap-3">
-        <div class="w-full">
-          <app-input-select
-            [placeholder]="'Select Location'"
-            [options]="locationArea"
-            formControlName="location"
-            validateFormBorder
-          ></app-input-select>
-          <div
-            *ngIf="tourForm.get('location')?.errors?.['required'] && tourForm.get('location')?.touched"
-            class="text-red-600 text-sm"
-          >
-            Location is required.
-          </div>
-        </div>
-
-        <div class="w-full">
-          <app-input-select
-            [placeholder]="'Select Type of Tour'"
-            [options]="tourType"
-            formControlName="tourType"
-            validateFormBorder
-          ></app-input-select>
-          <div
-            *ngIf="tourForm.get('location')?.errors?.['required'] && tourForm.get('tourType')?.touched"
-            class="text-red-600 text-sm"
-          >
-            Tour Type is required.
-          </div>
-        </div>
-      </section>
-
-      <!-- TIME START SECTION -->
-      <section class="flex items-center gap-3">
-        <div class="w-full">
-          <app-input-select
-            [placeholder]="'Select Start Time'"
-            [options]="tourTimes"
-            formControlName="startAt"
-            validateFormBorder
-          ></app-input-select>
-          <div
-            *ngIf="tourForm.get('startAt')?.errors?.['required'] && tourForm.get('startAt')?.touched"
-            class="text-red-600 text-sm"
-          >
-            Start Time is required.
-          </div>
-        </div>
-
-        <div class="w-full">
-          <app-input-select
-            [placeholder]="'Select Finish Time'"
-            [options]="tourTimes"
-            formControlName="finishAt"
-            validateFormBorder
-          ></app-input-select>
-          <div
-            *ngIf="tourForm.get('finishAt')?.errors?.['required'] && tourForm.get('finishAt')?.touched"
-            class="text-red-600 text-sm"
-          >
-            Finish Time is required.
-          </div>
-        </div>
-      </section>
-
-      <!-- LANGUAGES -->
-      <section class="flex items-center gap-3">
-        <div class="w-full">
-          <app-input-select
-            [placeholder]="'Select primary language'"
-            [options]="language"
-            formControlName="primaryLanguage"
-            validateFormBorder
-          ></app-input-select>
-          <div
-            *ngIf="tourForm.get('primaryLanguage')?.errors?.['required'] && tourForm.get('primaryLanguage')?.touched"
-            class="text-red-600 text-sm"
-          >
-            Primary language is required.
-          </div>
-        </div>
-        <div class="w-full">
-          <app-input-select
-            [placeholder]="'Select secondary language'"
-            [options]="language"
-            formControlName="secondaryLanguage"
-            validateFormBorder
-          ></app-input-select>
-          <div
-            *ngIf="tourForm.get('secondaryLanguage')?.errors?.['required'] && tourForm.get('secondaryLanguage')?.touched"
-            class="text-red-600 text-sm"
-          >
-            Secondary language is required.
-          </div>
-        </div>
-      </section>
+      <app-tour-meta
+        [tourMetaForm]="tourForm"
+        [locationArea]="locationArea"
+        [tourType]="tourType"
+        [tourTimes]="tourTimes"
+        [language]="language"
+      ></app-tour-meta>
     </div>
   </section>
 

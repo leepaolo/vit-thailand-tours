@@ -28,6 +28,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 import { TourInfoComponent } from './form/tour-info.component';
 import { TourImageUploadComponent } from './form/tour-image-upload.component';
+import { TourMetaComponent } from './form/tour-meta.component';
 
 @Component({
   selector: 'app-create-tour',
@@ -45,6 +46,7 @@ import { TourImageUploadComponent } from './form/tour-image-upload.component';
     MatIconModule,
     TourInfoComponent,
     TourImageUploadComponent,
+    TourMetaComponent,
   ],
   templateUrl: './create-tour.component.html',
   styleUrls: ['./create-tour.component.css'],
