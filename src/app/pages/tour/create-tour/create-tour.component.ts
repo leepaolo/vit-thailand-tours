@@ -29,6 +29,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { TourInfoComponent } from './form/tour-info.component';
 import { TourImageUploadComponent } from './form/tour-image-upload.component';
 import { TourMetaComponent } from './form/tour-meta.component';
+import { TourStepsComponent } from './form/tour-steps.component';
 
 @Component({
   selector: 'app-create-tour',
@@ -47,6 +48,7 @@ import { TourMetaComponent } from './form/tour-meta.component';
     TourInfoComponent,
     TourImageUploadComponent,
     TourMetaComponent,
+    TourStepsComponent,
   ],
   templateUrl: './create-tour.component.html',
   styleUrls: ['./create-tour.component.css'],
@@ -226,6 +228,11 @@ export class CreateTourComponent implements OnInit, OnDestroy {
     this.steps.push(stepForm);
   }
 
+  // Method to remove a step by index
+  removeStep(index: number): void {
+    const defaultStepCount = 2;
+  } // Number of default steps that should not be deleted
+
   updateTour(): void {
     console.log('updateTour method is called');
     if (this.tourForm.valid && this.isEdit) {
@@ -268,11 +275,6 @@ export class CreateTourComponent implements OnInit, OnDestroy {
       this.logInvalidControls();
     }
   }
-
-  // Method to remove a step by index
-  removeStep(index: number): void {
-    const defaultStepCount = 2;
-  } // Number of default steps that should not be deleted
 
   onSubmit(): void {
     if (this.tourForm.valid) {
