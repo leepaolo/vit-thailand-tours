@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tour-image-upload',
@@ -8,7 +9,6 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [CommonModule, MatIconModule],
   template: `
     <div class="w-full">
-      <!-- Image Drag and Drop Section -->
       <div
         class="image-drop-area"
         (drop)="onDrop($event)"
@@ -21,7 +21,6 @@ import { MatIconModule } from '@angular/material/icon';
         <p *ngIf="!image">Drag and drop an image here or click to select</p>
         <p *ngIf="image">{{ image.name }}</p>
 
-        <!-- Image preview -->
         <img
           *ngIf="imagePreview"
           [src]="imagePreview"
@@ -42,29 +41,48 @@ import { MatIconModule } from '@angular/material/icon';
   styles: [],
 })
 export class TourImageUploadComponent {
-  @Input() image: File | null = null; // Pass the image file
-  @Input() imagePreview: string | null = null; // Pass the image preview
-  @Output() fileSelected = new EventEmitter<File>(); // Emit the selected file
+  @Input() image: File | null = null;
+  @Input() imagePreview: SafeUrl | null = null;
+  @Output() imageSelected = new EventEmitter<File>(); // To emit image file
+  @Output() imagePreviewChanged = new EventEmitter<SafeUrl>(); // To emit image preview
 
-  // Handle file selection
+  constructor(private sanitizer: DomSanitizer) {}
+
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input?.files && input.files.length > 0) {
-      this.fileSelected.emit(input.files[0]); // Emit the selected file
+      const image = input.files[0];
+      this.imageSelected.emit(image); // Emit the selected image
+
+      // Generate the preview and emit it
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64String = reader.result as string;
+        const preview = this.sanitizer.bypassSecurityTrustUrl(base64String);
+        this.imagePreviewChanged.emit(preview); // Emit the new image preview
+      };
+      reader.readAsDataURL(image);
     }
   }
 
-  // Handle drag and drop
   onDrop(event: DragEvent): void {
     event.preventDefault();
     event.stopPropagation();
 
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
-      this.fileSelected.emit(event.dataTransfer.files[0]); // Emit the dropped file
+      const image = event.dataTransfer.files[0];
+      this.imageSelected.emit(image); // Emit the selected image
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64String = reader.result as string;
+        const preview = this.sanitizer.bypassSecurityTrustUrl(base64String);
+        this.imagePreviewChanged.emit(preview); // Emit the new image preview
+      };
+      reader.readAsDataURL(image);
     }
   }
 
-  // Allow drag over
   onDragOver(event: DragEvent): void {
     event.preventDefault();
     event.stopPropagation();

@@ -65,7 +65,7 @@ export class CreateTourComponent implements OnInit, OnDestroy {
   isEdit = false;
   tourId!: string;
   tour!: ITour;
-  deleteStep: number = 1;
+  deleteStep: number = 0;
   image: File | null = null;
   imagePreview: SafeUrl | null = null;
 
