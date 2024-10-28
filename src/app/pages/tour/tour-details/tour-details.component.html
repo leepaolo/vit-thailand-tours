@@ -6,43 +6,43 @@
     >
       <!-- Title -->
       <div class="flex justify-start items-center gap-2 pl-4 pr-2 py-1">
-        <h1 class="text-3xl sm:text-4xl font-bold text-slate-800">
+        <h1 class="text-3xl md:text-2xl lg:text-4xl font-bold text-slate-800">
           {{ tour.tourTitle }}
         </h1>
       </div>
 
       <!-- Price Info -->
       <div
-        class="flex flex-wrap justify-start items-center gap-4 mb-4 pl-4 pr-2 py-2"
+        class="flex flex-wrap justify-start items-center gap-4 pl-4 pr-2 py-2"
       >
-        <p class="font-medium text-slate-600 text-xl sm:text-2xl">
-          Price adults:
-          <span class="font-bold text-slate-800"
+        <p class="text-2xl font-normal text-slate-600">
+          Adults:
+          <span class="text-2xl font-bold text-slate-800"
             >${{ tour.tourPriceAdult }}</span
           >
         </p>
-        <p class="font-medium text-slate-600 text-xl sm:text-2xl">
-          Price children:
-          <span class="font-bold text-slate-800"
+        <p class="text-2xl font-normal text-slate-600">
+          Children:
+          <span class="text-2xl font-bold text-slate-800"
             >${{ tour.tourPriceChild }}</span
           >
         </p>
       </div>
 
-      <div class="flex flex-col md:flex-row justify-start">
+      <div class="flex flex-col md:flex-row border-t-2 border-slate-100 mt-2">
         <!-- Time Info -->
         <div
-          class="flex flex-wrap justify-start items-center gap-4 pl-4 pr-2 py-1"
+          class="flex flex-wrap justify-start items-center gap-4 mt-3 pl-4 pr-2 py-1"
         >
-          <p class="font-medium text-slate-600 text-base sm:text-lg">
-            Start at:
-            <span class="font-bold text-slate-800 text-lg sm:text-xl">{{
+          <p class="text-xl font-normal text-slate-600">
+            Start:
+            <span class="ftext-2xl font-bold text-slate-800">{{
               tour.tourStartAt
             }}</span>
           </p>
-          <p class="font-medium text-slate-600 text-base sm:text-lg">
-            End at:
-            <span class="font-bold text-slate-800 text-lg sm:text-xl">{{
+          <p class="text-xl font-normal text-slate-600">
+            End:
+            <span class="text-xl font-bold text-slate-800">{{
               tour.tourFinishAt
             }}</span>
           </p>
@@ -50,17 +50,17 @@
 
         <!-- Type and Location Info -->
         <div
-          class="flex flex-wrap justify-start items-center gap-4 pl-4 pr-2 py-1"
+          class="flex flex-wrap justify-start items-center gap-4 mt-3 pl-4 pr-2 py-1"
         >
-          <p class="font-medium text-slate-600 text-base sm:text-lg">
+          <p class="text-xl font-normal text-slate-600">
             Tour:
-            <span class="font-bold text-slate-800 text-lg sm:text-xl">{{
+            <span class="text-xl font-bold text-slate-800">{{
               tour.tourType
             }}</span>
           </p>
-          <p class="font-medium text-slate-600 text-base sm:text-lg">
-            Location:
-            <span class="font-bold text-slate-800 text-lg sm:text-xl">{{
+          <p class="text-xl font-normal text-slate-600">
+            Where:
+            <span class="text-xl font-bold text-slate-800">{{
               tour.tourLocation
             }}</span>
           </p>
@@ -73,14 +73,12 @@
       <section class="p-4 bg-red-100">
         <div>
           <h2
-            class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-snug mb-4 text-slate-800"
+            class="text-2xl md:text-2xl lg:text-3xl font-bold leading-snug mb-4 text-slate-800"
           >
             Tour Description
           </h2>
 
-          <p
-            class="text-base sm:text-lg md:text-xl leading-relaxed text-slate-600"
-          >
+          <p class="text-xl md:text-xl leading-relaxed text-slate-600">
             {{ tour.tourMainDescription }}
           </p>
         </div>
@@ -106,21 +104,19 @@
       class="p-4 bg-violet-100 mt-4"
     >
       <h3
-        class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-slate-800 leading-snug mb-4"
+        class="text-3xl md:text-2xl lg:text-3xl font-bold text-slate-800 leading-snug mb-4"
       >
-        Tour Steps
+        Intineray
       </h3>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div *ngFor="let step of tour.steps; let i = index" class="mt-4">
           <h4
-            class="text-md sm:text-lg md:text-xl font-semibold text-slate-700 leading-snug mb-2"
+            class="text-xl md:text-xl font-semibold text-slate-700 leading-snug mb-2"
           >
             Step {{ i + 1 }}: {{ step.tourStepTitle }}
           </h4>
-          <p
-            class="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed"
-          >
+          <p class="text-xl md:text-xl text-slate-600 leading-relaxed">
             {{ step.tourStepDescription }}
           </p>
         </div>
