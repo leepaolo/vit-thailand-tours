@@ -22,6 +22,7 @@ export class ButtonComponent {
   @Input() type?: string; // Allows passing the button type (e.g., 'button', 'submit')
   @Input() color?: string; // Optional input for button color ('primary', 'accent', 'warn')
   @Output() buttonClick = new EventEmitter<void>();
+  @Input() disabled: boolean = false;
 
   onClick() {
     this.buttonClick.emit(); // Emit click event when button is clicked
