@@ -8,53 +8,72 @@
       </h2>
     </div>
     <div class="w-full">
-      <app-input-text
-        [placeholder]="'Name'"
-        formControlName="name"
-        validateFormBorder
-      ></app-input-text>
       <div
         *ngIf="contactForm.get('name')?.errors?.['required'] && contactForm.get('name')?.touched"
         class="text-red-600 text-sm"
       >
         Name is required.
       </div>
-
       <app-input-text
-        [placeholder]="'Surname'"
-        formControlName="surname"
+        [placeholder]="'Name'"
+        formControlName="name"
         validateFormBorder
       ></app-input-text>
+
       <div
         *ngIf="contactForm.get('surname')?.errors?.['required'] && contactForm.get('surname')?.touched"
         class="text-red-600 text-sm"
       >
         Surname is required.
       </div>
-
       <app-input-text
-        [placeholder]="'Email'"
-        formControlName="email"
+        [placeholder]="'Surname'"
+        formControlName="surname"
         validateFormBorder
       ></app-input-text>
+
       <div
         *ngIf="contactForm.get('email')?.errors?.['required'] && contactForm.get('email')?.touched"
         class="text-red-600 text-sm"
       >
         Email is required.
       </div>
+      <app-input-text
+        [placeholder]="'Email'"
+        formControlName="email"
+        validateFormBorder
+      ></app-input-text>
+
       <div
-        *ngIf="contactForm.get('email')?.errors?.['email'] && contactForm.get('email')?.touched"
+        *ngIf="contactForm.get('phone')?.errors?.['required'] && contactForm.get('phone')?.touched"
         class="text-red-600 text-sm"
       >
-        Enter a valid email.
+        Phone is required.
       </div>
+
+      <app-input-text
+        [placeholder]="'Phone number'"
+        formControlName="phone"
+        validateFormBorder
+      ></app-input-text>
+
+      <div
+        *ngIf="contactForm.get('message')?.errors?.['required'] && contactForm.get('message')?.touched"
+        class="text-red-600 text-sm"
+      >
+        Message is required.
+      </div>
+      <app-text-area
+        [placeholder]="'Tell about your trip'"
+        formControlName="message"
+        validateFormBorder
+      ></app-text-area>
+
       <app-button
         [text]="'Submit'"
         [type]="'submit'"
         [disabled]="!contactForm.valid"
       ></app-button>
-      <!-- Additional fields for phone, adultNumber, childrenNumber, dateOdTour, and message as needed -->
     </div>
   </section>
 </form>

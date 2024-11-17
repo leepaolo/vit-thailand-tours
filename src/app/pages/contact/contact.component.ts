@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -9,19 +9,24 @@ import { IContactForm } from '../../core/models/contact-form.interface';
 import { CommonModule } from '@angular/common';
 import { InputTextComponent } from '../../shared/components/ui/input-text.component';
 import { ButtonComponent } from '../../shared/components/ui/button.component';
+import { TextAreaComponent } from '../../shared/components/ui/text-area.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
+  encapsulation: ViewEncapsulation.None,
   imports: [
     CommonModule,
     ReactiveFormsModule,
     InputTextComponent,
     ButtonComponent,
+    TextAreaComponent,
   ],
   templateUrl: './contact.component.html',
 })
 export class ContactComponent implements OnInit {
+  constructor() {}
+
   contactForm!: FormGroup;
 
   ngOnInit(): void {
@@ -29,11 +34,11 @@ export class ContactComponent implements OnInit {
       name: new FormControl('', Validators.required),
       surname: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      phone: new FormControl(''),
+      phone: new FormControl('', Validators.required),
       adultNumber: new FormControl('', Validators.pattern('^[0-9]*$')),
       childrenNumber: new FormControl('', Validators.pattern('^[0-9]*$')),
       dateOdTour: new FormControl(''),
-      message: new FormControl(''),
+      message: new FormControl('', Validators.required),
     });
   }
 

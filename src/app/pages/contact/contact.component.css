@@ -1,0 +1,4 @@
+::ng-deep .selected {
+  background-color: #c8e6c9 !important;
+  cursor: pointer;
+}
