@@ -10,7 +10,9 @@ import { CommonModule } from '@angular/common';
 import { InputTextComponent } from '../../shared/components/ui/input-text.component';
 import { ButtonComponent } from '../../shared/components/ui/button.component';
 import { TextAreaComponent } from '../../shared/components/ui/text-area.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { provideNativeDateAdapter } from '@angular/material/core';
 @Component({
   selector: 'app-contact',
   standalone: true,
@@ -21,7 +23,10 @@ import { TextAreaComponent } from '../../shared/components/ui/text-area.componen
     InputTextComponent,
     ButtonComponent,
     TextAreaComponent,
+    MatInputModule,
+    MatDatepickerModule,
   ],
+  providers: [provideNativeDateAdapter()],
   templateUrl: './contact.component.html',
 })
 export class ContactComponent implements OnInit {
